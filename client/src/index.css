@@ -1,0 +1,49 @@
+#headerId{
+    position:relative;
+    height: 30vh;
+    overflow: hidden;
+    display: block;
+    
+}
+.headerImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the header without squishing */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:1;
+}
+
+.SJGHLogo{
+    position: absolute;
+    z-index: 2;
+    padding: 20px;
+    right:0.1%;
+    width: 120px;
+}
+
+.EOSL{
+    position: absolute;
+    z-index: 3;
+    padding: 20px;
+    width: 83px;
+}
+
+#headerId h1 {
+    position: absolute;
+    z-index: 2; /* Puts the text on top of the image */
+    
+    /* These lines center the text exactly in the middle of the image */
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    
+    font-family:'PT Sans';
+    font-size: 80px;
+    margin: 0;
+    color: hsl(0, 0%, 100%); 
+    text-shadow: 2px 2px 4px hsla(0, 0%, 0%, 0.5); /* Makes text readable against the photo */
+    width: 100%;
+    text-align: center;
+  }
