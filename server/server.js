@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const cors = require('cors');
 const app = express();
+
+const QRCode = require('qrcode');
+
 app.use(express.json()); // This allows the server to read data sent to it
 app.use(cors());
 
@@ -33,11 +36,21 @@ app.post('/api/book', async (req, res) => {
 
         // Save it to MongoDB
         await newBooking.save();
+
+        // Create a unique QR code using the Appointment ID
+        // We turn the ID into a "Data URL" (a string that represents the image)
+        const qrCodeUrl = await QRCode.toDataURL(newBooking._id.toString());
+
+        // Send back success message AND the QR code image string
+        res.status(201).json({ 
+            message: "Booking successful!", 
+            qrCode: qrCodeUrl 
+        });
         
-        res.status(201).json({ message: "Booking successful!" });
-    } catch (err) {
-        res.status(500).json({ error: "Something went wrong" });
-    }
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Something went wrong" });
+        }
 });
 
 const PORT = 5000;
