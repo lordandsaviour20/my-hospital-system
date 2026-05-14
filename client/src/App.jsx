@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'; // Import the page switcher
+
+const Home = () => (
+  <div style={{ textAlign: 'center', padding: '50px' }}>
+    <h1>Welcome to Sri Jayawardenepura General Hospital</h1>
+    <p>Please select "Booking" from the menu to make an appointment.</p>
+  </div>
+);
+
+const About = () => <div style={{ textAlign: 'center', padding: '50px' }}><h1>About Our Hospital</h1></div>;
+const Contact = () => <div style={{ textAlign: 'center', padding: '50px' }}><h1>Contact Us</h1></div>;
 
 function App() {
   const [formData, setFormData] = useState({
@@ -35,10 +46,20 @@ function App() {
     };
 
   return (
+    <Routes>
+      {/* Home Page Route */}
+      <Route path="/" element={<Home />} />
 
+      {/* About Page Route */}
+      <Route path="/about" element={<About />} />
 
-    <div class="bookingBox">
-      
+      {/* 📞 Contact Page Route - Matches 'localhost:3000/contact' */}
+      <Route path="/contact" element={<Contact />} />
+
+      {/* Booking Page Route - This contains your existing booking logic */}
+      <Route path="/booking" element={
+
+     <div class="bookingBox">
       <h2 style={{marginTop:'0px',marginBottom:'0px',textAlign:'center'}}>Booking System</h2>
        
        {!isBooked ? (
@@ -90,15 +111,14 @@ function App() {
           
           <button 
             onClick={() => window.location.reload()} 
-            style={{marginTop: '40px', padding: '10px', cursor: 'pointer'}}
-          >
+            style={{marginTop: '40px', padding: '10px', cursor: 'pointer'}}>
             Make Another Booking
-          </button>
+            </button>
+            </div>
+          )}
         </div>
-      )}
-
-    </div>
+      } />
+    </Routes>
   );
 }
-
 export default App;
