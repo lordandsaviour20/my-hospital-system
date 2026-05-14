@@ -10,12 +10,12 @@ app.use(express.json()); // This allows the server to read data sent to it
 app.use(cors());
 
 
-// 1. Tell the server to connect to your MongoDB Compass database
+// Tell the server to connect to your MongoDB Compass database
 mongoose.connect('mongodb://localhost:27017/hospital_db')
     .then(() => console.log("✅ The brain is connected to the database!"))
     .catch((err) => console.log("❌ Connection error:", err));
 
-// 2. A test route to see if it works
+// A test route to see if it works
 app.get('/', (req, res) => {
     res.send("Server is running and database is linked!");
 });

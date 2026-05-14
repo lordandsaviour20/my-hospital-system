@@ -19,7 +19,7 @@
     position: absolute;
     z-index: 2;
     padding: 20px;
-    right:0.1%;
+    right:0%;
     width: 120px;
 }
 
@@ -47,3 +47,17 @@
     width: 100%;
     text-align: center;
   }
+
+.bookingBox{
+     height:420px;
+     width:350px;
+     margin: 70px auto;
+     display: grid;
+     justify-content: center;
+     background-color:hsl(235, 40%, 89%);
+     padding: 65px;
+     font-family: Arial; 
+}
+.fdhf{
+    color: #ffffff;
+}
