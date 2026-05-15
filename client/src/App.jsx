@@ -15,12 +15,12 @@ function App() {
 
       <Route path="/about" element={<About />} />
 
-      <Route path="/ContactUs" element={<ContactUs />} />
+      <Route path="/contactus" element={<ContactUs />} />
 
       <Route path="/booking" element={<Booking />} />
 
       <Route path="/services" element={<Services />} />
-      
+
     </Routes>
   );
 }
