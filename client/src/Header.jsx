@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SJGHImage from './1643347957972.jpg';
-import SJGHLogo from './LogoSJGH.png';
-import EOSL from './Emblem_of_Sri_Lanka.png'
+import SJGHImage from './images/1643347957972.jpg';
+import SJGHLogo from './images/LogoSJGH.png';
+import EOSL from './images/Emblem_of_Sri_Lanka.png'
 
 function Header(){
     return(
