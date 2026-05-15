@@ -55,7 +55,7 @@
   }
 
 .bookingBox{
-     height:420px;
+     height:500px;
      width:350px;
      margin: 70px auto;
      display: grid;
@@ -98,4 +98,7 @@
 
 .navbar a:hover {
     color: hsl(0, 72%, 52%); /* Highlight color on hover */
+}
+.sd{
+    color: #910000;
 }

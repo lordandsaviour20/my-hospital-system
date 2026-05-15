@@ -29,6 +29,8 @@ app.post('/api/book', async (req, res) => {
         // Create a new booking using the data sent from the user (req.body)
         const newBooking = new Booking({
             patientName: req.body.patientName,
+            patientNIC: req.body.patientNIC,
+            department: req.body.department,
             doctorName: req.body.doctorName,
             appointmentDate: req.body.appointmentDate,
             appointmentTime: req.body.appointmentTime

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'; // Import the page switcher
 import Booking from './pages/Booking';
 import Home from './pages/Home';
