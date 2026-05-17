@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'; // Import the page switcher
-import Booking from './pages/Booking';
+import Bookingmain from './pages/Bookings/bookingMain';
 import Home from './pages/Home';
 import About from './pages/About';
 import ContactUs from './pages/ContactUs';
@@ -16,7 +16,7 @@ function App() {
 
       <Route path="/contactus" element={<ContactUs />} />
 
-      <Route path="/booking" element={<Booking />} />
+      <Route path="/booking" element={<Bookingmain />} />
 
       <Route path="/services" element={<Services />} />
 

@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // Import our "Blueprint" (Schema) from the models folder
-const Booking = require('./models/Booking');
+const DChannel = require('./models/DChannel');
 
 // This is the "Order Desk"
 app.post('/api/book', async (req, res) => {
@@ -34,17 +34,17 @@ app.post('/api/book', async (req, res) => {
         }
 
         //Count existing bookings for this exact doctor, date, and slot to calculate the order number
-        const existingBookingsCount = await Booking.countDocuments({
+        const existingDChannelCount = await DChannel.countDocuments({
          doctorName: doctorName,
          appointmentDate: appointmentDate,
          timeSlot: timeSlot
         });        
 
-        const nextOrderNumber = existingBookingsCount + 1;
+        const nextOrderNumber = existingDChannelCount + 1;
         const calculatedToken = `${nextOrderNumber}${timeSlot}`; // e.g., "1A" or "10B"
 
         // Create a new booking using the data sent from the user (req.body)
-        const newBooking = new Booking({
+        const newDChannel = new DChannel({
             patientName,
             patientNIC,
             department,
@@ -55,11 +55,11 @@ app.post('/api/book', async (req, res) => {
         });
 
         // Save it to MongoDB
-        await newBooking.save();
+        await newDChannel.save();
 
         //Generate the QR code containing the generated token data
         const qrCodeUrl = await QRCode.toDataURL(JSON.stringify({
-            bookingId: newBooking._id.toString(),
+            bookingId: newDChannel._id.toString(),
             token: calculatedToken,
             patient: patientName,
             doctor: doctorName,

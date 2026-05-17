@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 
+
 const hospitalData = {
   Cardiology: ["Dr. Aruna Perera","Dr. N. L. Amarasena","Dr. J. I. P. Herath", "Dr. Sandun Silva"],
   Neurology: ["Dr. Gamini Fonseka", "Dr. Kumari Rathnayake"],
@@ -43,7 +44,7 @@ const timeSlots = [
   { id: 'H', label: '05:00 p.m. - 06:30 p.m.' }
 ];
 
-function Booking() {
+function DChannel() {
     const [formData, setFormData] = useState({
       patientName: '',
       patientNIC:'',
@@ -66,25 +67,24 @@ function Booking() {
   };
 
     const handleDateChange = (dateString) => {
-    if (!dateString) return;
+      if (!dateString) return;
     
-    const chosenDate = new Date(dateString);
-    const dayOfWeek = chosenDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      const chosenDate = new Date(dateString);
+      const dayOfWeek = chosenDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 
-    // Remove blank spaces to correctly match dynamic object keys
-    const deptKey = formData.department.replace(/\s+/g, '');
-    const allowedDays = departmentSchedules[deptKey] || departmentSchedules.Default;
+      // Remove blank spaces to correctly match dynamic object keys
+      const deptKey = formData.department.replace(/\s+/g, '');
+      const allowedDays = departmentSchedules[deptKey] || departmentSchedules.Default;
     
-    if (!allowedDays.includes(dayOfWeek)) {
-      alert(`This department only operates on designated clinic days. Please choose an available clinic day.`);
-      setFormData({ ...formData, appointmentDate: '', timeSlot: '' });
-      setSelectedSlot('');
+      if (!allowedDays.includes(dayOfWeek)) {
+        alert(`This department only operates on designated clinic days. Please choose an available clinic day.`);
+        setFormData({ ...formData, appointmentDate: '', timeSlot: '' });
+        setSelectedSlot('');
       return;
-    }
-    
-    setFormData({ ...formData, appointmentDate: dateString, timeSlot: '' });
-    setSelectedSlot(''); // Reset selected slots when date switches
-  };
+      }
+      setFormData({ ...formData, appointmentDate: dateString, timeSlot: '' });
+      setSelectedSlot(''); // Reset selected slots when date switches
+    };
 
     // Helper to handle Department change
   const handleDepartmentChange = (dept) => {
@@ -149,20 +149,8 @@ function Booking() {
                 value={formData.department}
                 onChange={(e) => handleDepartmentChange(e.target.value)}
               >
+                
                 <option value="">-- Choose a Department --</option>
-                <option value="Cardiology">Cardiology</option>
-                <option value="Neurology">Neurology</option>
-                <option value="Pediatrics">Pediatrics</option>
-                <option value="General Surgery">General Surgery</option>
-                <option value="Urology">Urology</option>
-                <option value="Oncology">Oncology</option>
-                <option value="Gynocology">Gynocology</option>
-                <option value="Dermatology">Dermatology</option>
-                <option value="Infectious Diseases">Infectious Diseases</option>
-                <option value="Pulmonary Medicine">Pulmonary Medicine</option>
-                <option value="Rheumatology">Rheumatology</option>
-                <option value="Gastroenterology">Gastroenterology</option>
-
                 {Object.keys(hospitalData).map(dept => (
                   <option key={dept} value={dept}>{dept}</option>
                 ))}
@@ -194,7 +182,7 @@ function Booking() {
                 name="appointmentDate" 
                 value={formData.appointmentDate} 
                 style={{ height:'5px', width:'40%',padding:'10px',marginTop:'5px'}} 
-                disabled={!formData.department}
+                disabled={!formData.department} 
                 onChange={(e) => handleDateChange(e.target.value)}
                 min={getTomorrowDate()}
                 required
@@ -283,4 +271,4 @@ function Booking() {
     )
 }
 
-export default Booking;
+export default DChannel;

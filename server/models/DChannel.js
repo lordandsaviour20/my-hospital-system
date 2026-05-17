@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const BookingSchema = new mongoose.Schema({
+const DChannelSchema = new mongoose.Schema({
     patientName: String,
     patientNIC: String,
     department: String,
@@ -12,4 +12,4 @@ const BookingSchema = new mongoose.Schema({
     status: { type: String, default: 'Pending' }
 });
 
-module.exports = mongoose.model('Booking', BookingSchema);
+module.exports = mongoose.model('DChannel', DChannelSchema);

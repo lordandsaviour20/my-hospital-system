@@ -54,20 +54,7 @@
     text-align: center;
   }
 
-.bookingBox{
-     width:350px;
-     min-height:500px;
-     height:auto;
-     margin: 70px auto;
-     display: grid;
-     justify-content: center;
-     background-color:hsl(235, 40%, 89%);
-     padding: 65px;
-     font-family: Arial; 
-     box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Optional: makes it look clean */
-     overflow: hidden;           /* Ensures inner elements stay contained smoothly */
-     transition: all 0.3s ease;  /* Smoothly animates the box expanding */
-}
+
 
 .navbar {
     background-color: hsl(229, 46%, 16%); /* Dark solid color for better contrast below the image */
@@ -106,3 +93,71 @@
 .sd{
     color: #910000;
 }
+
+.bookingBox{
+    width:100%;
+    box-sizing: border-box;
+    min-height:500px;
+    height:auto;
+    margin-top: 60px;
+    background-color:hsl(235, 40%, 89%);
+    padding: 30px;
+    font-family: Arial; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Optional: makes it look clean */
+    border-radius: 10px;
+    overflow: hidden;           /* Ensures inner elements stay contained smoothly */
+    transition: all 0.3s ease;  /* Smoothly animates the box expanding */
+}
+
+.schedule-table-container {
+    width:100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  .schedule-title {
+    margin-top: 0px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-family:'PT Sans';  
+}
+  
+  .table {
+    width: auto;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 20px;
+    
+  }
+  
+  .table th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border:#ffffff 1px solid;
+  }
+  
+  .table td {
+    padding: 12px;
+    border: 3px solid hsl(211, 63%, 80%);
+    vertical-align: top;
+  }
+  
+  .table tr:hover {
+    background-color: hsl(213, 100%, 96%); /* Highlights rows cleanly on mouse-hover */
+  }
+  
+  .doctor-list-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .doc-tag {
+    color: #0e1011;
+  }
