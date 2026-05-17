@@ -55,14 +55,18 @@
   }
 
 .bookingBox{
-     height:500px;
      width:350px;
+     min-height:500px;
+     height:auto;
      margin: 70px auto;
      display: grid;
      justify-content: center;
      background-color:hsl(235, 40%, 89%);
      padding: 65px;
      font-family: Arial; 
+     box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Optional: makes it look clean */
+     overflow: hidden;           /* Ensures inner elements stay contained smoothly */
+     transition: all 0.3s ease;  /* Smoothly animates the box expanding */
 }
 
 .navbar {

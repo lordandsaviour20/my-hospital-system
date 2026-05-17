@@ -14,8 +14,34 @@ const hospitalData = {
   PulmonaryMedicine:["Dr. Geethal Perera","Dr. M. S. G. Perera "],
   Rheumatology:["Dr. Kaleel Cassim"],
   Gastroenterology:["Dr. J. V. Sanjeewa Aryasingha","Dr. Amal Priyantha"]
-
 };
+
+const departmentSchedules = {
+  Cardiology: [1, 3],       // Mondays (1) and Wednesdays (3)
+  Neurology: [2, 4],        // Tuesdays (2) and Thursdays (4)
+  Pediatrics: [1, 5],       // Mondays (1) and Fridays (5)
+  GeneralSurgery: [3, 5],   // Wednesdays (3) and Fridays (5)
+  Urology:[1],              // Mondays (1) 
+  Oncology:[2],             // Tuesdays (2)
+  Gynocology:[2,4],         // Tuesdays (2) and Thursdays (4)
+  Dermatology:[3],          // Wednesdays (3)
+  InfectiousDiseases:[1, 2, 3, 4, 5],  //// Monday to Friday
+  PulmonaryMedicine:[3,5],  // Wednesdays (3) and Fridays (5)
+  Rheumatology:[4],         // Thursdays (4)
+  Gastroenterology:[5],     // Fridays (5)
+  // Default fallback if a department isn't explicitly listed above:
+  Default: [1, 2, 3, 4, 5]  // Monday to Friday
+};
+
+const timeSlots = [
+  { id: 'A', label: '6:30 a.m. - 8:00 a.m.' },
+  { id: 'B', label: '8:00 a.m. - 9:30 a.m.' },
+  { id: 'C', label: '9:30 a.m. - 11:00 a.m.' },
+  { id: 'E', label: '11:00 a.m. - 12:30 p.m.' },
+  { id: 'F', label: '1:00 p.m. - 03:30 p.m.' },
+  { id: 'G', label: '03:30 p.m. - 05:00 p.m.' },
+  { id: 'H', label: '05:00 p.m. - 06:30 p.m.' }
+];
 
 function Booking() {
     const [formData, setFormData] = useState({
@@ -24,41 +50,61 @@ function Booking() {
       department:'',
       doctorName: '',
       appointmentDate: '',
-      appointmentTime: ''
+      timeSlot: ''
     });
+
+  const [selectedSlot, setSelectedSlot] = useState(''); // Tracks active UI slot selection
+  const [tokenNumber, setTokenNumber] = useState('');    // To hold the combined token string (e.g., 10A)
+  const [qrCode, setQrCode] = useState('');
+  const [isBooked, setIsBooked] = useState(false)
+
+
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
+
+    const handleDateChange = (dateString) => {
+    if (!dateString) return;
+    
+    const chosenDate = new Date(dateString);
+    const dayOfWeek = chosenDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+    // Remove blank spaces to correctly match dynamic object keys
+    const deptKey = formData.department.replace(/\s+/g, '');
+    const allowedDays = departmentSchedules[deptKey] || departmentSchedules.Default;
+    
+    if (!allowedDays.includes(dayOfWeek)) {
+      alert(`This department only operates on designated clinic days. Please choose an available clinic day.`);
+      setFormData({ ...formData, appointmentDate: '', timeSlot: '' });
+      setSelectedSlot('');
+      return;
+    }
+    
+    setFormData({ ...formData, appointmentDate: dateString, timeSlot: '' });
+    setSelectedSlot(''); // Reset selected slots when date switches
+  };
 
     // Helper to handle Department change
   const handleDepartmentChange = (dept) => {
     setFormData({ 
       ...formData, 
       department: dept, 
-      doctorName: '' // Reset doctor when department changes
+      doctorName: '',
+      appointmentDate: '',
+      timeSlot: ''
     });
-  }
-    const [qrCode, setQrCode] = useState('');
-    const [isBooked, setIsBooked] = useState(false)
+    setSelectedSlot('');
+  };
   
-    const getTomorrowDate = () => {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      return tomorrow.toISOString().split('T')[0];
-    };
+  const handleBook = async (e) => {
+    e.preventDefault();
 
-
-    const handleBook = async (e) => {
-      e.preventDefault();
-
-      const [hours, minutes] = formData.appointmentTime.split(':').map(Number);
-      const totalMinutes = hours * 60 + minutes;
-      
-      const minLimit = 6 * 60 + 30; // 6:30 AM = 390 minutes
-      const maxLimit = 14 * 60;     // 2:00 PM = 840 minutes
-      
-      if (totalMinutes < minLimit || totalMinutes > maxLimit) {
-        alert("Appointments are only available between 6:30 AM and 2:00 PM.");
-        return; // Stop the booking process
-      }  
-      
+    if (!formData.timeSlot) {
+      alert("Please choose an available appointment time slot to continue.");
+      return;
+    } 
       try {
         const response = await fetch('http://localhost:5000/api/book', {
           method: 'POST',
@@ -70,6 +116,7 @@ function Booking() {
         if (response.ok) {
           //  Save the QR code received from the server
           setQrCode(data.qrCode);
+          setTokenNumber(data.tokenNumber);
           setIsBooked(true);
           alert("Booking successful! Scan your QR code below.");
         } else {
@@ -79,12 +126,10 @@ function Booking() {
           alert("Error: Is your server running?");
         }
       };
-    
-
 
     return (
         <div class="bookingBox">
-        <h2 style={{marginTop:'0px',marginBottom:'0px',textAlign:'center'}}>Booking System</h2>
+        <h2 style={{marginTop:'0px',marginBottom:'0px',textAlign:'center'}}>Doctor Channelling System</h2>
        
        {!isBooked ? (
           <form onSubmit={handleBook}>
@@ -142,69 +187,97 @@ function Booking() {
             </p>
           </div>
            
-           <div>
-           <p><b style={{textAlign:'center',fontSize:'18px'}}>Date :</b> 
-              <input type="date" 
-              name="appointmentDate" 
-              value={formData.appointmentDate} 
-              style={{ height:'5px', width:'40%',padding:'10px',marginTop:'5px'}} 
-              onChange={(e) => setFormData({...formData, appointmentDate: e.target.value})}
-              min={getTomorrowDate()} // This disables today and all past dates
-              required/></p>
-           </div>
+          <div>
+            <p><b style={{textAlign:'center',fontSize:'18px'}}>Date :</b> 
+              <input 
+                type="date" 
+                name="appointmentDate" 
+                value={formData.appointmentDate} 
+                style={{ height:'5px', width:'40%',padding:'10px',marginTop:'5px'}} 
+                disabled={!formData.department}
+                onChange={(e) => handleDateChange(e.target.value)}
+                min={getTomorrowDate()}
+                required
+              />
+            </p>
+          </div>
            
-           <div>
-           <b style={{textAlign:'center',fontSize:'18px'}}>Time :</b> 
-            <input type="time" 
-            name="appointmentTime"
-            value={formData.appointmentTime}
-            style={{ height:'5px', width:'39%',padding:'10px 10px 10px',marginTop:'0'}} 
-            onChange={(e) => setFormData({...formData, appointmentTime: e.target.value})}
-            min="06:30" 
-            max="14:00"
-            required/>
-           </div>
-
-           <div style={{height:'33px',width:'338px',backgroundColor:'#eecfa7',border: '2px solid #910000', borderRadius: '10px',padding:'8px', marginTop:'9px'}}>
-              <label style={{marginTop:'15px',fontSize:'15px'}}> *Appointment Times are only from 6:30 AM to 2:00 PM.</label>
+          {/* Dynamic Interactive Time Slot Section */}
+           {formData.appointmentDate && (
+            <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+              <b style={{ fontSize: '18px' }}>Available Time Slots :</b>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginTop: '10px' }}>
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedSlot(slot.id);
+                      setFormData({ ...formData, timeSlot: slot.id });
+                    }}
+                    style={{
+                      padding: '15px',
+                      backgroundColor: selectedSlot === slot.id ? '#007bff' : '#f8f9fa',
+                      color: selectedSlot === slot.id ? 'white' : 'black',
+                      border: '1px solid #ced4da',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      fontWeight: selectedSlot === slot.id ? 'bold' : 'normal',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Slot {slot.id} ({slot.label})
+                  </button>
+                ))}
+              </div>
             </div>
+          )}
+
+          <div style={{height:'auto',width:'auto',backgroundColor:'#eecfa7',border: '2px solid #910000', borderRadius: '10px',padding:'8px', marginTop:'15px'}}>
+            <label style={{fontSize:'14px', fontWeight:'bold', color:'#910000'}}> 
+              * Note: Please make sure to pick a scheduled session day matching clinic operating hours.
+            </label>
+          </div>
            
-           <div style={{display:'flex',justifyContent:'center', maxWidth:'auto', height:'60px',marginTop:'30px'}}>
+          <div style={{display:'flex',justifyContent:'center',maxWidth:'auto', height:'60px',marginTop:'30px'}}>
             <button type="submit" 
               style={{padding: '20px', background: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer',fontSize:'16px'}}>
               <b>CONFIRM BOOKING</b>
-             </button>
-           </div>
-           </form>
+            </button>
+          </div>
+        </form>
        ) : (
         //  This part shows ONLY after the user clicks confirm
         <div style={{textAlign: 'center', padding: '20px'}}>
           <h3 style={{color: '#28a745'}}>✅ Booking Confirmed!</h3>
-          <p>Please save this QR code and show it at the hospital reception.</p>
-          
-          {/* Display the QR Code image */}
-          <div style={{margin: '20px 0', border: '2px dashed #007bff', padding: '8px', display: 'inline-block'}}>
+
+          <div style={{ margin: '20px 0', padding: '15px', backgroundColor: '#e2f0d9', border: '2px solid #28a745', borderRadius: '10px', display: 'inline-block', minWidth: '180px' }}>
+            <span style={{ fontSize: '15px', color: '#555', fontWeight: 'bold' }}>Your Queue Token Number</span>
+            <h1 style={{ fontSize: '54px', color: '#28a745', margin: '5px 0', letterSpacing: '2px' }}>{tokenNumber}</h1>
+          </div>
+
+          <p style={{color: '#555'}}>Please save this QR code and token layout to present at reception.</p>
+
+          <div style={{margin: '15px 0', border: '2px dashed #007bff', padding: '8px', display: 'inline-block'}}>
             <img src={qrCode} alt="Appointment QR Code" style={{width: '200px'}} />
           </div>
 
-          <div>
-            <b style={{marginTop:'0px'}}>
-            <strong>Patient:</strong> {formData.patientName}
-            </b>
+          <div style={{fontSize: '16px', marginTop: '10px', textAlign:'left', display:'inline-block'}}>
+            <p><strong>Patient:</strong> {formData.patientName}</p>
+            <p><strong>NIC:</strong> {formData.patientNIC}</p>
+            <p><strong>Doctor:</strong> {formData.doctorName}</p>
+            <p><strong>Date:</strong> {formData.appointmentDate}</p>
+            <p><strong>Selected Slot:</strong> Slot {formData.timeSlot}</p>
           </div>
-          
-          <div>
-            <b style={{marginBottom:'0px'}}>
-            <strong>Doctor:</strong> {formData.doctorName}
-            </b>
-          </div>
+          <br/>
           
           <button 
             onClick={() => window.location.reload()} 
-            style={{marginTop: '40px', padding: '10px', cursor: 'pointer'}}>
+            style={{marginTop: '30px', padding: '12px 24px', background: '#6c757d', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold'}}>
             Make Another Booking
-            </button>
-            </div>
+          </button>
+        </div>
           )}
         </div>
     )

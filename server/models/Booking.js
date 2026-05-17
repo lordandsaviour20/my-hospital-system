@@ -6,7 +6,9 @@ const BookingSchema = new mongoose.Schema({
     department: String,
     doctorName: String,
     appointmentDate: String,
-    appointmentTime: String,
+    timeSlot: String,      // Stores 'A', 'B', 'C', or 'D'
+    tokenNumber: String,   // Combines order and letter (e.g., "10A")
+    bookedAt: { type: Date, default: Date.now },
     status: { type: String, default: 'Pending' }
 });
 

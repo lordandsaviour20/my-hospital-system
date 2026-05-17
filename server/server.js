@@ -26,32 +26,57 @@ const Booking = require('./models/Booking');
 // This is the "Order Desk"
 app.post('/api/book', async (req, res) => {
     try {
+        const { patientName, patientNIC, department, doctorName, appointmentDate, timeSlot } = req.body;
+
+        // Validation check
+        if (!timeSlot) {
+            return res.status(400).json({ error: "Please select an available time slot." });
+        }
+
+        //Count existing bookings for this exact doctor, date, and slot to calculate the order number
+        const existingBookingsCount = await Booking.countDocuments({
+         doctorName: doctorName,
+         appointmentDate: appointmentDate,
+         timeSlot: timeSlot
+        });        
+
+        const nextOrderNumber = existingBookingsCount + 1;
+        const calculatedToken = `${nextOrderNumber}${timeSlot}`; // e.g., "1A" or "10B"
+
         // Create a new booking using the data sent from the user (req.body)
         const newBooking = new Booking({
-            patientName: req.body.patientName,
-            patientNIC: req.body.patientNIC,
-            department: req.body.department,
-            doctorName: req.body.doctorName,
-            appointmentDate: req.body.appointmentDate,
-            appointmentTime: req.body.appointmentTime
+            patientName,
+            patientNIC,
+            department,
+            doctorName,
+            appointmentDate,
+            timeSlot,
+            tokenNumber: calculatedToken // Saves the real token directly to MongoDB
         });
 
         // Save it to MongoDB
         await newBooking.save();
 
-        // Create a unique QR code using the Appointment ID
-        // We turn the ID into a "Data URL" (a string that represents the image)
-        const qrCodeUrl = await QRCode.toDataURL(newBooking._id.toString());
+        //Generate the QR code containing the generated token data
+        const qrCodeUrl = await QRCode.toDataURL(JSON.stringify({
+            bookingId: newBooking._id.toString(),
+            token: calculatedToken,
+            patient: patientName,
+            doctor: doctorName,
+            date: appointmentDate,
+            slot: timeSlot
+        }))
 
-        // Send back success message AND the QR code image string
-        res.status(201).json({ 
-            message: "Booking successful!", 
-            qrCode: qrCodeUrl 
+        // CRITICAL: Send tokenNumber back so React can display it!
+        res.status(201).json({
+            message: "Booking recorded successfully",
+            tokenNumber: calculatedToken, // This matches what React is looking for!
+            qrCode: qrCodeUrl
         });
         
         } catch (err) {
-            console.error(err);
-            res.status(500).json({ error: "Something went wrong" });
+            console.error("Backend Error:", err);
+            res.status(500).json({ error: "Database transaction failed. Check server terminal logs." });
         }
 });
 
