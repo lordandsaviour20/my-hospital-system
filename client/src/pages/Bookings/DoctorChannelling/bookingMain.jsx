@@ -1,6 +1,6 @@
 import React from 'react';
-import ChanSchedule from './ChanSchedule';
-import DChannel from './DChannel';
+import ChanSchedule from './ClinicSchedule';
+import DChannel from './ChannellingSystem';
 
 function bookingMain(){
     return(

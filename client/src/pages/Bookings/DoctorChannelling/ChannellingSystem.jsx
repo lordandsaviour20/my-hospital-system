@@ -251,7 +251,7 @@ function DChannel() {
             <img src={qrCode} alt="Appointment QR Code" style={{width: '200px'}} />
           </div>
 
-          <div style={{fontSize: '16px', marginTop: '10px', textAlign:'left', display:'inline-block'}}>
+          <div style={{fontSize: '16px', marginTop: '10px', textAlign:'left'}}>
             <p><strong>Patient:</strong> {formData.patientName}</p>
             <p><strong>NIC:</strong> {formData.patientNIC}</p>
             <p><strong>Doctor:</strong> {formData.doctorName}</p>

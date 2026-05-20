@@ -6,19 +6,26 @@
 
 #header-main {
     position: relative;
-    height: 35vh; /* Keep the image area at this height */
+    height: 90vh; /* Keep the image area at this height */
     width: 100%;
     overflow: hidden;
 }
 
 .headerImage{
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image fills the header without squishing */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index:1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.headerImage.active {
+  opacity: 1;
 }
 
 .SJGHLogo{
@@ -41,7 +48,7 @@
     z-index: 2; /* Puts the text on top of the image */
     
     /* These lines center the text exactly in the middle of the image */
-    top: 70%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -30%);
     
@@ -53,8 +60,6 @@
     width: 100%;
     text-align: center;
   }
-
-
 
 .navbar {
     background-color: hsl(229, 46%, 16%); /* Dark solid color for better contrast below the image */
@@ -88,10 +93,78 @@
 }
 
 .navbar a:hover {
-    color: hsl(0, 72%, 52%); /* Highlight color on hover */
+    color: hsl(0, 72%, 52%);
 }
-.sd{
-    color: #910000;
+
+/* Anchor container layout settings */
+.navbar ul li.has-dropdown {
+  position: relative;
+  display: inline-block;
+  
+}
+
+/* Custom styling for the main text inside the main bar link block */
+.navbar ul li.has-dropdown .dropdown-trigger {
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'PT Sans';
+  padding: 0px 15px;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+/*  Compact Popup Card: Hidden by default and shrunk down */
+.navbar ul li.has-dropdown .dropdown-submenu {
+  display: none;             /* Keeps card completely hidden */
+  position: absolute;
+  top: 100%;                 /* Opens exactly below navbar layout boundary line */
+  left: 0;
+  
+  min-width: 200px;          /* Shrunk down for a cleaner smaller footprint */
+  background-color: hsl(0, 0%, 100%); /* Distinct dark background tone separate from your nav */
+  padding: 4px 0 !important; /* Reduces vertical card internal space */
+  margin: 0 !important;
+  list-style: none !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 999;            /* Ensures it floats safely on top of all components */
+}
+
+/*  Layout Reset: Force inner items to stack vertically instead of inline flexed layout grids */
+.navbar ul li.has-dropdown .dropdown-submenu li {
+  display: block !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+}
+
+/* Isolated Child Links: Stripped of global header link properties */
+.navbar ul li.has-dropdown .dropdown-submenu li a {
+  color: hsl(0, 0%, 3%) !important;
+  background: none !important;      /* Removes main nav background images or block lines */
+  padding: 10px 30px !important;     /* Clean, tight spatial dimensions */
+  font-size: 18px !important;       /* Explicitly much smaller font scaling */
+  font-weight: none !important;   /* Thinner text presentation */
+  font-family: Arial, sans-serif !important;
+  display: block !important;
+  text-decoration: none !important;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Hover styles for nested dropdown items */
+.navbar ul li.has-dropdown .dropdown-submenu li a:hover {
+  background-color: hsl(209, 86%, 86%) !important; /* Subtle highlights on specific row focus */
+  color: hsl(205, 68%, 48%) !important;            /* Shifts hover color cleanly */
+}
+
+/* HOVER TRIGGER STATE: Displays popup menu ONLY when mouse pointer hovers over the cell link element */
+.navbar ul li.has-dropdown:hover .dropdown-submenu {
+  display: block !important;
 }
 
 .bookingBox{
