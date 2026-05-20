@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import {useState} from 'react';
 import {useEffect} from 'react';
 
-import SJGHImage1 from './IMG1.png';
-import SJGHImage2 from './IMG2.png';
-import SJGHImage3 from './IMG3.png';
-import SJGHImage4 from './IMG4.png';
-import SJGHImage5 from './IMG5.png';
-import SJGHImage6 from './IMG6.png';
-import SJGHImage7 from './IMG7.png';
+import SJGHImage1 from './images/HeaderImages/IMG1.png';
+import SJGHImage2 from './images/HeaderImages/IMG2.png';
+import SJGHImage3 from './images/HeaderImages/IMG3.png';
+import SJGHImage4 from './images/HeaderImages/IMG4.png';
+import SJGHImage5 from './images/HeaderImages/IMG5.png';
+import SJGHImage6 from './images/HeaderImages/IMG6.png';
+import SJGHImage7 from './images/HeaderImages/IMG7.png';
 
-import SJGHLogo from './images/LogoSJGH.png';
-import EOSL from './images/Emblem_of_Sri_Lanka.png'
+import SJGHLogo from './images/HeaderImages/LogoSJGH.png';
+import EOSL from './images/HeaderImages/Emblem_of_Sri_Lanka.png'
 
 function Header(){
 

@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
 });
 
 // Import our "Blueprint" (Schema) from the models folder
-const DChannel = require('./models/DChannel');
+const DChannel = require('./models/ChannellingSystem');
+const MedicalCheckup = require('./models/MedicalCheckups');
 
 // This is the "Order Desk"
 app.post('/api/book', async (req, res) => {
@@ -79,6 +80,61 @@ app.post('/api/book', async (req, res) => {
             res.status(500).json({ error: "Database transaction failed. Check server terminal logs." });
         }
 });
+
+
+app.post('/api/checkup', async (req, res) => {
+    try {
+      // 🌟 FIX 1: Rename 'package' to 'medicalPackage' during destructuring to avoid the reserved keyword
+      const { patientName, patientNIC, package: medicalPackage, appointmentDate, timeSlot } = req.body;
+        
+      if (!timeSlot) {
+        return res.status(400).json({ error: "Please select a medical checkup time slot." });
+      }
+  
+      // Count existing checkup appointments for this specific package, date, and slot
+      // 🌟 FIX 2: Map the schema key 'package' to our safe local variable 'medicalPackage'
+      const existingMedicalCheckupCount = await MedicalCheckup.countDocuments({
+        package: medicalPackage,
+        appointmentDate,
+        timeSlot
+      });
+  
+      const nextTokenNumber = existingMedicalCheckupCount + 1;
+      const calculatedToken = `${nextTokenNumber}${timeSlot}`; // Generates tokens like "1L", "2M"
+  
+      // 🌟 FIX 3: Assign the values cleanly into your Mongoose model instantiation
+      const newMedicalCheckup = new MedicalCheckup({
+        patientName,
+        patientNIC,
+        package: medicalPackage,
+        appointmentDate,
+        timeSlot,
+        tokenNumber: calculatedToken
+      });
+  
+      await newMedicalCheckup.save();
+  
+      // Create a distinct QR dataset for health screening processing
+      const qrCodeUrl = await QRCode.toDataURL(JSON.stringify({
+        bookingId: newMedicalCheckup._id.toString(),
+        token: calculatedToken,
+        patient: patientName,
+        type: "Medical Checkup",
+        package: medicalPackage, // Using the safe variable name here
+        date: appointmentDate
+      }));
+  
+      res.status(201).json({
+        message: "Medical check-up confirmed successfully",
+        tokenNumber: calculatedToken,
+        qrCode: qrCodeUrl
+      });
+  
+    } catch (err) {
+      console.error("Checkup Server Error:", err);
+      res.status(500).json({ error: "Database transaction failed for checkup processing." });
+    }
+  });
 
 const PORT = 5000;
 app.listen(PORT, () => {
