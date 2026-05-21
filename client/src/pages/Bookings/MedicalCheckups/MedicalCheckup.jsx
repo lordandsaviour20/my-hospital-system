@@ -179,7 +179,7 @@ const timeSlots = [
           <div style={{display:'flex',justifyContent:'center',maxWidth:'auto', height:'60px',marginTop:'30px'}}>
             <button type="submit" 
               style={{padding: '20px', background: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer',fontSize:'16px'}}>
-              <b>BOOK MEDICAL CHECK-UP</b>
+              <b>BOOK A MEDICAL CHECK-UP</b>
             </button>
           </div>
             </form>

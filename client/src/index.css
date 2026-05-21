@@ -173,11 +173,10 @@
    ***************************
 */
 
-
 .bookingBox{
     width:100%;
     box-sizing: border-box;
-    min-height:500px;
+    min-height:350px;
     height:auto;
     margin-top: 60px;
     background-color:hsl(235, 40%, 89%);
