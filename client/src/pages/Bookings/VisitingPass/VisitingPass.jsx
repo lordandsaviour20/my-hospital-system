@@ -22,123 +22,225 @@ function VisitingPass() {
     try {
       const res = await fetch(`http://localhost:5000/api/visiting/patient?wardNo=${search.wardNo}&bedNo=${search.bedNo}`);
       const data = await res.json();
-      if (res.ok) {
-        setPatientInfo(data);
-      } else {
-        setError(data.error);
-      }
-    } catch {
-      setError('Connection to health registry server lost.');
+      
+      if (!res.ok) throw new Error(data.error || 'Patient location mismatch inside active database.');
+      setPatientInfo(data);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
-  // 2. Submit Pass Transaction Request
+  // 2. Validate Ward Safe Limits and Generate Pass Token
   const handleIssuePass = async (e) => {
     e.preventDefault();
     setError('');
+    setResult(null);
+
+    if (!form.slotId || !form.selectedTimeStr) {
+      setError('Please select a specific visit session window from the timeline.');
+      return;
+    }
+
     try {
+      const payload = {
+        patientId: patientInfo._id,
+        visitorName: form.visitorName,
+        visitDate: form.visitDate,
+        slotId: form.slotId,
+        selectedTimeStr: form.selectedTimeStr,
+        durationMinutes: parseInt(form.durationMinutes)
+      };
+
       const res = await fetch('http://localhost:5000/api/visiting/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, patientId: patientInfo.patientId })
+        body: JSON.stringify(payload)
       });
       const data = await res.json();
-      if (res.ok) {
-        setResult(data);
-      } else {
-        setError(data.error);
-      }
-    } catch {
-      setError('Transaction validation failed.');
+
+      if (!res.ok) throw new Error(data.error || 'Concurrent floor capacity limit reached.');
+      setResult(data);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
-  // Helper helper function to populate available drop-down timeline selections
-  const generateTimeOptions = (slotId) => {
-    if (!slotId) return [];
-    const options = [];
-    const [startH, startM] = VISITING_SLOTS[slotId].start.split(':').map(Number);
-    const [endH, endM] = VISITING_SLOTS[slotId].end.split(':').map(Number);
-    
-    let current = new Date(2020, 0, 1, startH, startM);
-    const end = new Date(2020, 0, 1, endH, endM);
-
-    while (current < end) {
-      const timeStr = current.toTimeString().substring(0, 5);
-      options.push(timeStr);
-      current.setMinutes(current.getMinutes() + 15); // Steps choices out every 15 minutes
-    }
-    return options;
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
   };
 
   return (
-    <div className="bookingBox" style={{ maxWidth: '600px', margin: '40px auto', fontFamily: 'Arial' }}>
-      <h2 style={{ textAlign: 'center', color: '#333' }}>Ward Visitation Security Pass Desk</h2>
-      
+    <div className="bookingBox">
+      <h2 className="form-heading">Visiting Pass Clearance Engine</h2>
+
+      {/* STAGE A: PATIENT LOCATOR ENQUIRY */}
       {!patientInfo && !result && (
         <form onSubmit={handleVerifyPatient}>
-          <h3>Enter Patient Location Details</h3>
-          <p><b>Ward Number:</b> <input type="text" required style={{ width: '100%', padding: '8px' }} onChange={e => setSearch({...search, wardNo: e.target.value})} /></p>
-          <p><b>Bed Number:</b> <input type="text" required style={{ width: '100%', padding: '8px' }} onChange={e => setSearch({...search, bedNo: e.target.value})} /></p>
-          <button type="submit" style={{ width: '100%', padding: '12px', background: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Locate Patient Record</button>
-          {error && <p style={{ color: 'red', marginTop: '10px' }}>⚠️ {error}</p>}
+          <p className="section-subtext">Locate the active patient room assignment profile inside the ward matrix:</p>
+          
+          <div className="form-group">
+            <label className="form-label"><b>Ward Location Number:</b></label>
+            <input 
+              type="text" 
+              placeholder="e.g., Ward 04B" 
+              required 
+              className="fluid-input"
+              value={search.wardNo} 
+              onChange={e => setSearch({ ...search, wardNo: e.target.value })} 
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label"><b>Assigned Bed Number:</b></label>
+            <input 
+              type="text" 
+              placeholder="e.g., Bed 12" 
+              required 
+              className="fluid-input"
+              value={search.bedNo} 
+              onChange={e => setSearch({ ...search, bedNo: e.target.value })} 
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="submit-btn"><b>VERIFY LOCATION MATRIX</b></button>
+          </div>
+          {error && <p className="fluid-error-msg">⚠️ {error}</p>}
         </form>
       )}
 
+      {/* STAGE B: VISITOR REGISTRATION & DURATION PROFILE */}
       {patientInfo && !result && (
         <form onSubmit={handleIssuePass}>
-          <div style={{ background: '#e9ecef', padding: '15px', borderRadius: '5px', marginBottom: '20px' }}>
-            <p style={{ margin: 0 }}><strong>Patient Target Identity:</strong> {patientInfo.patientName}</p>
-            <p style={{ margin: '5px 0 0 0' }}><strong>Location Context:</strong> Ward {search.wardNo} / Bed {search.bedNo}</p>
+          <div className="patient-banner-card">
+            <h4 className="banner-title"> Active Match Connected.</h4>
+            <p><strong>Patient Name:</strong> {patientInfo.patientName}</p>
+            <p><strong>Location Structure:</strong> {patientInfo.wardNo} — [{patientInfo.bedNo}]</p>
           </div>
 
-          <p><b>Your Full Name:</b> <input type="text" required style={{ width: '100%', padding: '8px' }} onChange={e => setForm({...form, visitorName: e.target.value})} /></p>
-          <p><b>Visitation Date:</b> <input type="date" required style={{ width: '100%', padding: '8px' }} onChange={e => setForm({...form, visitDate: e.target.value})} /></p>
-          
-          <p><b>Select Session Hour Block:</b>
-            <select required style={{ width: '100%', padding: '8px' }} onChange={e => setForm({...form, slotId: e.target.value, selectedTimeStr: ''})}>
-              <option value="">-- Choose General Session --</option>
-              {Object.entries(VISITING_SLOTS).map(([id, s]) => <option key={id} value={id}>{s.label}</option>)}
+          <div className="form-group">
+            <label className="form-label"><b>Visitor Full Name:</b></label>
+            <input 
+              type="text" 
+              required 
+              className="fluid-input"
+              placeholder="Enter your legal identity name"
+              value={form.visitorName} 
+              onChange={e => setForm({ ...form, visitorName: e.target.value })} 
+            />
+          </div>
+
+          <div className="form-group">
+            <div className="inline-date-wrap">
+              <label className="form-label"><b>Intended Date:</b></label>
+              <input 
+                type="date" 
+                required 
+                className="fluid-date-input"
+                min={getTomorrowDate()}
+                value={form.visitDate} 
+                onChange={e => setForm({ ...form, visitDate: e.target.value })} 
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label className="form-label"><b>Select Session Blocks:</b></label>
+            <select 
+              required 
+              className="fluid-select"
+              value={form.slotId} 
+              onChange={e => setForm({ ...form, slotId: e.target.value, selectedTimeStr: '' })}
+            >
+              <option value="">-- Choose Access Session --</option>
+              {Object.entries(VISITING_SLOTS).map(([id, s]) => (
+                <option key={id} value={id}>{s.label}</option>
+              ))}
             </select>
-          </p>
+          </div>
 
           {form.slotId && (
-            <>
-              <p><b>Exact Check-in Time Option:</b>
-                <select required style={{ width: '100%', padding: '8px' }} value={form.selectedTimeStr} onChange={e => setForm({...form, selectedTimeStr: e.target.value})}>
-                  <option value="">-- Select Arrival Time --</option>
-                  {generateTimeOptions(form.slotId).map(t => <option key={t} value={t}>{t}</option>)}
-                </select>
-              </p>
-
-              <p><b>Length of Planned Stay:</b>
-                <select required style={{ width: '100%', padding: '8px' }} onChange={e => setForm({...form, durationMinutes: Number(e.target.value)})}>
-                  <option value="15">15 Minutes</option>
-                  <option value="30">30 Minutes (Maximum Allowed)</option>
-                </select>
-              </p>
-            </>
+            <div className="form-group">
+              <label className="form-label"><b>Select Arrival Time:</b></label>
+              <select 
+                required 
+                className="fluid-select"
+                value={form.selectedTimeStr} 
+                onChange={e => setForm({ ...form, selectedTimeStr: e.target.value })}
+              >
+                <option value="">-- Select Exact Window --</option>
+                {form.slotId === 'V1' && (
+                  <>
+                    <option value="06:30">06:30 AM</option>
+                    <option value="07:00">07:00 AM</option>
+                    <option value="07:30">07:30 AM</option>
+                    <option value="08:00">08:00 AM</option>
+                  </>
+                )}
+                {form.slotId === 'V2' && (
+                  <>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="13:30">01:30 PM</option>
+                  </>
+                )}
+                {form.slotId === 'V3' && (
+                  <>
+                    <option value="17:00">05:00 PM</option>
+                    <option value="17:30">05:30 PM</option>
+                    <option value="18:00">06:00 PM</option>
+                  </>
+                )}
+              </select>
+            </div>
           )}
 
-          <button type="submit" style={{ width: '100%', padding: '12px', background: '#28a745', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginTop: '10px' }}>Verify Capacity & Book Pass</button>
-          {error && <p style={{ color: 'red', marginTop: '10px' }}>⚠️ {error}</p>}
+          <div className="form-group slider-wrapper-box">
+            <label className="form-label">
+              <b>Stated Bedside Duration:</b> <span className="duration-highlight">({form.durationMinutes} Minutes Max)</span>
+            </label>
+            <input 
+              type="range" 
+              min="15" 
+              max="30" 
+              step="15" 
+              className="fluid-slider-input"
+              value={form.durationMinutes} 
+              onChange={e => setForm({ ...form, durationMinutes: e.target.value })} 
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="submit-btn-success"><b>Verify Capacity & Book Pass</b></button>
+          </div>
+          {error && <p className="fluid-error-msg">⚠️ {error}</p>}
         </form>
       )}
 
+      {/* STAGE C: GENERATED SECURITY PASS BARCODE */}
       {result && (
-        <div style={{ textAlign: 'center', padding: '20px' }}>
-          <div style={{ background: '#d4edda', padding: '10px', borderRadius: '5px', color: '#155724', fontWeight: 'bold' }}>
+        <div className="receipt-view">
+          <div className="success-banner-alert">
             Visitation Security Clearance Granted!
           </div>
-          <div style={{ margin: '20px 0' }}>
-            <span style={{ fontSize: '14px', color: '#666' }}>Your Secure Access Queue ID</span>
-            <h1 style={{ fontSize: '48px', color: '#28a745', margin: '5px 0' }}>{result.tokenNumber}</h1>
+          
+          <div className="token-display-card">
+            <span className="token-label">Your Secure Access Queue ID</span>
+            <h1 className="token-number">{result.tokenNumber}</h1>
           </div>
-          <div>
-            <img src={result.qrCode} alt="Security Check Pass QR" style={{ width: '220px', border: '1px solid #ccc', padding: '5px' }} />
+          
+          <div className="qr-container-box">
+            <img src={result.qrCode} alt="Security Check Pass QR" className="receipt-qr-img" />
           </div>
-          <p style={{ fontSize: '13px', color: '#666', marginTop: '10px' }}>Scan this code at the floor control gate to verify concurrent visitor caps.</p>
-          <button onClick={() => window.location.reload()} style={{ padding: '10px 20px', background: '#6c757d', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', marginTop: '15px' }}>Done / Exit</button>
+          
+          <p className="receipt-note">Scan this code at the floor control gate to verify concurrent visitor caps.</p>
+          
+          <button onClick={() => window.location.reload()} className="reset-btn">
+            Issue New Visitor Pass
+          </button>
         </div>
       )}
     </div>
@@ -146,4 +248,3 @@ function VisitingPass() {
 }
 
 export default VisitingPass;
-

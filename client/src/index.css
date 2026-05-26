@@ -1,73 +1,190 @@
-#headerId{
+   html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(14px, 0.9vw + 10px, 18px);    
+}
+
+.app-container {
+    width: 100%;
+}
+
+/* ==========================================================================
+    PURE CSS AUTO-HIDING PREMIUM SCROLLBAR
+   ========================================================================== */
+
+/* 1. Track Dimensions */
+::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+/* 2. Keeps underlying page text layout perfectly flush */
+::-webkit-scrollbar-track {
+    background: hsl(223, 58%, 13%) !important;
+}
+
+/* 3. Draggable Pill Handle (Fades out when the mouse moves away) */
+::-webkit-scrollbar-thumb {
+    background: rgb(46, 196, 181) !important; /* Semi-transparent teal by default */
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+    border-radius: 0px !important;
+    transition: background-color 0.25s ease-in-out !important;
+}
+
+/* 4. Becomes highly visible instantly when hovered over */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(62, 224, 209, 1) !important; /* Vibrantly lit clinical teal */
+}
+
+
+#headerId {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
 }
+
+/* ====================================
+   FLUID HERO SLIDESHOW MODULE (HEADER)
+   ==================================== */
 
 #header-main {
     position: relative;
-    height: 90vh; /* Keep the image area at this height */
+      
+    /* Forces the header container to perfectly match the full screen height */
+    height: 100vh; 
+    height: 100svh; /* Handles responsive mobile browser toolbars natively */
+      
+    /*  FIX: Use 100% instead of 100vw so it respects the scrollbar bounds */
     width: 100%;
-    overflow: hidden;
-}
+    margin: 0;
+    padding: 0;
+      
+    /* Prevents child elements from bleeding out or causing layout scrollbars */
+    overflow: hidden; 
+      
+    /* Flex grid coordinates center your text and logo graphics seamlessly */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
 
-.headerImage{
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
+.headerImage {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-
+  
+  /*Forces image canvas to scale exactly to the viewport's body width */
+  width: 100%;
+  height: 100%;
+  
+  /* Aligns and scales without compressing, stretching, or breaking aspect ratios */
+  object-fit: cover; 
+  object-position: center; 
+  
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  z-index: 1;
+  transition: opacity 1.5s ease-in-out; 
 }
 
 .headerImage.active {
-  opacity: 1;
+    opacity: 1;
 }
 
-.SJGHLogo{
+.SJGHLogo {
     position: absolute;
     z-index: 2;
-    padding: 20px;
-    right:0%;
-    width: 120px;
+    top: 6%;
+    right: 3%;
+    width: clamp(65px, 7.5vw, 125px); 
+    padding: 0;
 }
 
-.EOSL{
+.EOSL {
     position: absolute;
     z-index: 3;
-    padding: 20px;
-    width: 83px;
+    top: 6%;
+    left: 3%;
+    width: clamp(48px, 5.5vw, 85px); 
+    padding: 0;
 }
 
 #headerId h1 {
     position: absolute;
-    z-index: 2; /* Puts the text on top of the image */
-    
-    /* These lines center the text exactly in the middle of the image */
-    top: 10%;
+    z-index: 2; 
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -30%);
-    
-    font-family:'PT Sans';
-    font-size: 80px;
-    margin: 0;
-    color: hsl(0, 0%, 100%); 
-    text-shadow: 2px 2px 4px hsla(0, 0%, 0%, 0.5); /* Makes text readable against the photo */
-    width: 100%;
+    transform: translate(-50%, -50%);
+    font-family: 'PT Sans', sans-serif;
+    width: 85%; 
     text-align: center;
-  }
+    color: hsl(0, 0%, 100%); 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75); 
+    font-size: clamp(15px, 3vw + 8px, 68px); 
+    margin: 0;
+}
+#header-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.4) 0%,
+      rgba(15, 23, 42, 0.1) 50%,
+      rgba(15, 23, 42, 0.5) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
 
-.navbar {
-    background-color: hsl(229, 46%, 16%); /* Dark solid color for better contrast below the image */
-    padding: 15px 0;
-    position: relative; /* This makes it follow the flow of the page */
+/* =======================================
+   INTERACTIVE GLASSMORPHIC NAVIGATION BAR
+   ======================================= */
+   .navbar {
+    /* Anchors the navbar horizontally over the bottom section of the slideshow view */
+    position: absolute;
+    top: clamp(10px, 2.5vh, 25px); /* Lifted slightly from the exact bottom edge for the round look */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the floating rounded navbar perfectly */
+    
+    /* Dynamically handles width so it behaves like an elegant elongated pill container */
+    width: calc(auto - clamp(20px, 5vw, 60px)); 
+    max-width: 1360px;
     z-index: 10;
-    width: 100%;
-    margin-top: 5px;
+    
+    /* ROUNDED EDGES */
+    border-radius: clamp(12px, 1.5vw, 30px); /* Smoothly scales corners up/down with viewport sizes */
+    
+    /* ALWAYS VISIBLE STATE: Clean, elongated semi-transparent frosted backdrop */
+    background: rgba(14, 25, 53, 0.35); 
+    backdrop-filter: blur(10px) saturate(130%);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    
+    /* Fine specular rounded boundary highlights */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    padding: clamp(10px, 0.9vw, 18px) clamp(15px, 3vw, 45px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    
+    /* Smooth transition matrix when shifting states */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*  INTERACTION STATE: Deepens into a richer, slightly darker frosted glass container */
+.navbar:hover {
+    background: rgba(8, 14, 30, 0.7); 
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 .navbar ul {
@@ -75,168 +192,951 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centers the links */
-}
- 
-.navbar li {
-    margin: 0 120px;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: clamp(8px, 1vw, 20px) clamp(15px, 4.2vw, 85px); 
 }
 
-.navbar a {
-    color: hsl(0, 0%, 100%);
+.navbar ul li {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar a,
+.navbar ul li.has-dropdown .dropdown-trigger {
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.3s;
-    font-family:'PT Sans';
-    font-size: 20px;
+    font-family: 'PT Sans', sans-serif;
+    cursor: pointer;
+    font-size: clamp(14px, 0.9vw + 3px, 19px); 
+    padding: 6px 10px;
+    border-radius: 6px; /* Slightly matches button selection boundaries with container style */
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); 
 }
 
-.navbar a:hover {
-    color: hsl(0, 72%, 52%);
+/*  Dynamic linear gradient conversion on text labels when hovered */
+.navbar a:hover,
+.navbar ul li.has-dropdown:hover .dropdown-trigger {
+    color: #ffffff;
+    background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
 }
 
-/* Anchor container layout settings */
-.navbar ul li.has-dropdown {
-  position: relative;
-  display: inline-block;
-  
+/* ✨ Accent underscore trace animation */
+.navbar a::after,
+.navbar ul li.has-dropdown .dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #38bdf8, #06b6d4);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
-/* Custom styling for the main text inside the main bar link block */
-.navbar ul li.has-dropdown .dropdown-trigger {
-  color: hsl(0, 0%, 100%);
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 20px;
-  font-family: 'PT Sans';
-  padding: 0px 15px;
-  display: inline-block;
-  transition: color 0.3s;
+.navbar a:hover::after,
+.navbar ul li.has-dropdown:hover .dropdown-trigger::after {
+    width: 85%;
 }
 
-/*  Compact Popup Card: Hidden by default and shrunk down */
+/* ==========================================================================
+   🕶️ FROSTED GLASS DROPDOWN SUBMENU PANELS
+   ========================================================================== */
 .navbar ul li.has-dropdown .dropdown-submenu {
-  display: none;             /* Keeps card completely hidden */
-  position: absolute;
-  top: 100%;                 /* Opens exactly below navbar layout boundary line */
-  left: 0;
-  
-  min-width: 200px;          /* Shrunk down for a cleaner smaller footprint */
-  background-color: hsl(0, 0%, 100%); /* Distinct dark background tone separate from your nav */
-  padding: 4px 0 !important; /* Reduces vertical card internal space */
-  margin: 0 !important;
-  list-style: none !important;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  z-index: 999;            /* Ensures it floats safely on top of all components */
+    display: none;             
+    position: absolute;
+    top: 135%; /* Pops upward cleanly over the slideshow viewport space */
+    left: 50%;
+    transform: translateX(-50%); 
+    min-width: clamp(200px, 16vw, 200px); 
+    
+    /* Deep slate frosted backdrop variant */
+    background: rgba(10, 17, 34, 0.88); 
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+    
+    padding: 8px 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 10px; /* Rounded corners for submenu drops */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.4);
+    z-index: 999;            
 }
 
-/*  Layout Reset: Force inner items to stack vertically instead of inline flexed layout grids */
-.navbar ul li.has-dropdown .dropdown-submenu li {
-  display: block !important;
-  width: 100%;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-align: left;
-}
-
-/* Isolated Child Links: Stripped of global header link properties */
 .navbar ul li.has-dropdown .dropdown-submenu li a {
-  color: hsl(0, 0%, 3%) !important;
-  background: none !important;      /* Removes main nav background images or block lines */
-  padding: 10px 30px !important;     /* Clean, tight spatial dimensions */
-  font-size: 18px !important;       /* Explicitly much smaller font scaling */
-  font-weight: none !important;   /* Thinner text presentation */
-  font-family: Arial, sans-serif !important;
-  display: block !important;
-  text-decoration: none !important;
-  width: 100%;
-  box-sizing: border-box;
-  transition: background-color 0.15s ease, color 0.15s ease;
+    color: rgba(255, 255, 255, 0.88) !important; 
+    padding: clamp(10px, 0.8vw, 14px) clamp(16px, 1.6vw, 28px) !important;     
+    font-size: clamp(14px, 0.8vw + 3px, 17px) !important;       
+    font-weight: 600 !important;   
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-shadow: none !important;
+    display: block;
+    width: 100%;
+    text-align: left;
 }
 
-/* Hover styles for nested dropdown items */
 .navbar ul li.has-dropdown .dropdown-submenu li a:hover {
-  background-color: hsl(209, 86%, 86%) !important; /* Subtle highlights on specific row focus */
-  color: hsl(205, 68%, 48%) !important;            /* Shifts hover color cleanly */
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(6, 182, 212, 0.15)) !important; 
+    color: #38bdf8 !important;            
 }
 
-/* HOVER TRIGGER STATE: Displays popup menu ONLY when mouse pointer hovers over the cell link element */
 .navbar ul li.has-dropdown:hover .dropdown-submenu {
-  display: block !important;
+    display: block;
 }
 
-/* 
-   ***************************
-    DOCTOR CHANELLING SECTION
-   ***************************
-*/
-
-.bookingBox{
-    width:100%;
-    box-sizing: border-box;
-    min-height:350px;
-    height:auto;
-    margin-top: 60px;
-    background-color:hsl(235, 40%, 89%);
-    padding: 30px;
-    font-family: Arial; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Optional: makes it look clean */
-    border-radius: 10px;
-    overflow: hidden;           /* Ensures inner elements stay contained smoothly */
-    transition: all 0.3s ease;  /* Smoothly animates the box expanding */
+/* ==================================================
+   UNIVERSAL CONTAINERS & REGISTRATION WORKFLOW FORMS
+   ================================================== */
+.bookingBox {
+    width: clamp(290px, 88vw, 620px);
+    min-height: 350px;
+    height: auto;
+    margin: clamp(25px, 4.5vw, 65px) auto; 
+    background-color: hsl(223, 58%, 13%);
+    padding: clamp(16px, 3.8vw, 42px); 
+    box-shadow: 0 5px 18px rgba(0,0,0,0.12); 
+    border-radius: clamp(6px, 1vw, 12px);
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.schedule-table-container {
-    width:100%;
-    box-sizing: border-box;
+.form-heading {
+    text-align: center; 
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 0;
+    margin-bottom: clamp(15px, 2vw, 30px);
+    font-size: clamp(20px, 1.6vw + 6px, 30px);
+    color: hsl(0, 0%, 100%);
+}
+
+.form-group {
+    margin-bottom: clamp(12px, 1.5vw, 22px);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.form-group b {
+    font-size: clamp(14px, 0.9vw + 2px, 17px);
+    color: #ffffff;
+}
+
+/* Fluid clean form layout fields */
+.fluid-input, 
+.fluid-select,
+.fluid-date-input {
+    width: 100%; 
+    padding: clamp(8px, 0.8vw, 14px); 
+    margin-top: 6px; 
+    box-sizing: border-box; 
+    border-radius: 5px; 
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: clamp(14px, 0.8vw + 2px, 17px);
+    transition: border-color 0.2s ease;
+}
+
+.fluid-input:focus, .fluid-select:focus, .fluid-date-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.inline-date-wrap {
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    gap: clamp(10px, 1vw, 20px);
+    margin: 0;
+    width: 100%;
+}
+
+.inline-date-wrap .fluid-date-input {
+    width: auto;
+    flex-grow: 1;
+    min-width: 160px;
+}
+
+/* ===========================================
+   DYNAMIC CLINIC SESSION TIME SELECTION GRIDS
+   =========================================== */
+.slots-section {
+    margin-top: clamp(15px, 2.2vw, 28px); 
+    margin-bottom: clamp(15px, 2.2vw, 28px);
+}
+
+.slots-title {
+    display: block;
+    font-size: clamp(15px, 0.9vw + 3px, 18px);
+    color: #222;
+}
+
+.time-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); 
+    gap: clamp(8px, 1.2vw, 15px);
+    margin-top: 12px;
+}
+
+.slot-btn {
+    padding: clamp(10px, 1vw + 2px, 16px) clamp(5px, 0.5vw, 10px);
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal;
+    transition: all 0.2s ease;
+    font-size: clamp(13px, 0.8vw + 1px, 15px);
+    line-height: 1.4;
+}
+
+.slot-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.slot-btn.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+    box-shadow: 0 3px 8px rgba(0,123,255,0.3);
+}
+
+.form-actions {
+    display: flex; 
+    justify-content: center; 
+    margin-top: clamp(20px, 3vw, 38px);
+}
+
+.submit-btn {
+    width: 100%; 
+    padding: clamp(12px, 1.2vw + 3px, 18px) !important; 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: clamp(14px, 1vw + 2px, 18px) !important;
+    transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+
+/* =================================================
+   TRANSACTIONS CONFIRMATION LAYOUTS (RECEIPT CODES)
+   ================================================= */
+.receipt-view {
+    text-align: center; 
     padding: 5px;
-    border-radius: 10px;
-  }
-  
-  .schedule-title {
+}
+
+.success-text {
+    color: #28a745;
+    font-size: clamp(18px, 1.5vw + 4px, 26px);
+    margin-top: 0;
+}
+
+.token-display-card {
+    margin: clamp(15px, 2.5vw, 30px) 0; 
+    padding: clamp(12px, 2vw, 24px); 
+    background-color: #e2f0d9; 
+    border: 2px solid #28a745; 
+    border-radius: 10px; 
+    display: inline-block; 
+    width: 100%;
+    max-width: 320px;
+    min-width: 180px;
+}
+
+.token-label {
+    font-size: clamp(13px, 0.8vw + 2px, 15px); 
+    color: #555; 
+    font-weight: bold;
+    display: block;
+}
+
+.token-number {
+    font-size: clamp(42px, 5vw + 12px, 64px); 
+    color: #28a745; 
+    margin: 5px 0; 
+    letter-spacing: 2px;
+}
+
+.receipt-note {
+    color: #ffffff; 
+    font-size: clamp(13px, 0.8vw + 1px, 15px);
+    margin: 12px 0;
+}
+
+.qr-container-box {
+    margin: 15px 0; 
+    border: 2px dashed #007bff; 
+    padding: 8px; 
+    display: inline-block; 
+    background-color: #fff;
+    max-width: 220px;
+    width: 60%;
+}
+
+.receipt-qr-img {
+    width: 100%; 
+    max-width: 200px;
+    height: auto; 
+    display: block;
+    margin: 0 auto;
+}
+
+.receipt-details-grid {
+    font-size: clamp(14px, 0.8vw + 2px, 17px); 
+    margin-top: 10px; 
+    text-align: left; 
+    background: #fff; 
+    padding: clamp(12px, 2vw, 22px); 
+    border-radius: 8px; 
+    border: 1px solid #ddd;
+}
+
+.receipt-details-grid p {
+    margin: 8px 0;
+}
+
+.reset-btn {
+    margin-top: 30px; 
+    padding: clamp(10px, 1vw + 2px, 15px) 24px; 
+    background: #6c757d; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: 100%;
+    font-size: clamp(14px, 0.9vw + 2px, 17px);
+}
+
+.reset-btn:hover {
+    background: hsl(206, 7%, 38%);
+}
+
+/* =====================================
+   VISITATION ACCESS INTERFACE SPECIFICS
+   ===================================== */
+.section-subtext {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: clamp(13px, 0.8vw + 2px, 16px);
+}
+
+.patient-banner-card {
+    background-color: hsl(207, 85%, 93%);
+    border-left: 5px solid hsl(211, 100%, 50%);
+    padding: clamp(10px, 1.5vw, 20px);
+    border-radius: 6px;
+    margin-bottom: clamp(15px, 2vw, 25px);
+    color: #1e3a5f;
+    font-size: clamp(14px, 0.8vw + 2px, 17px);
+    text-align: left;
+}
+
+.patient-banner-card p {
+    margin: 6px 0;
+}
+
+.banner-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: clamp(15px, 0.9vw + 2px, 18px);
+    color: #0056b3;
+}
+
+.slider-wrapper-box {
+    margin-top: 15px;
+}
+
+.duration-highlight {
+    font-weight: bold;
+    color: #28a745;
+    font-size: clamp(14px, 0.8vw + 2px, 17px);
+}
+
+.fluid-slider-input {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    height: 6px;
+    background: #ced4da;
+    border-radius: 3px;
+    outline: none;
+}
+
+.submit-btn-success {
+    width: 100%; 
+    padding: clamp(12px, 1.2vw + 3px, 18px) !important; 
+    background: #28a745; 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: bold;
+    font-size: clamp(14px, 1vw + 2px, 18px) !important;
+    transition: background 0.2s ease;
+}
+
+.submit-btn-success:hover {
+    background: #218838;
+}
+
+.success-banner-alert {
+    background-color: #d4edda; 
+    padding: clamp(10px, 1.2vw, 18px); 
+    border-radius: 5px; 
+    color: #155724; 
+    font-weight: bold;
+    text-align: center;
+    font-size: clamp(14px, 0.9vw + 2px, 18px);
+    border: 1px solid #c3e6cb;
+}
+
+.fluid-error-msg {
+    color: hsl(0, 75%, 45%);
+    background-color: hsl(0, 75%, 95%);
+    border: 1px solid hsl(0, 75%, 85%);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: clamp(13px, 0.8vw + 2px, 15px);
+    font-weight: 500;
+}
+
+/* ==================================
+   CLINIC SCHEDULE TABLES DATA LAYOUT
+   ================================== */
+   .schedule-table-container {
+    /* Allows the table box to grow and shrink proportionally */
+    flex: 1 1 550px; 
+    max-width: 750px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(15px, 2.5vw, 30px);
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.514);
+    overflow-x: auto;             /* Horizontal scroll barrier for mobile screens */
+}
+
+.schedule-title {
     margin-top: 0px;
     text-align: center;
     color: #333;
     margin-bottom: 15px;
-    font-size: 30px;
-    font-family:'PT Sans';  
+    font-size: clamp(22px, 1.5vw + 8px, 36px); 
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
 }
-  
-  .table {
-    width: auto;
+
+.table {
+    width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    font-size: 20px;
-    
-  }
-  
-  .table th {
-    background-color: #007bff;
+    font-size: clamp(13px, 0.8vw + 3px, 17px);
+    min-width: 650px; /* Protects data columns from collapsing to text squiggles */
+}
+
+.table th {
+    background-color: hsl(223, 58%, 13%);
     color: white;
-    padding: 12px;
+    padding: clamp(10px, 1.2vw, 18px);
     text-align: left;
     font-weight: bold;
-    border:#ffffff 1px solid;
-  }
-  
-  .table td {
-    padding: 12px;
-    border: 3px solid hsl(211, 63%, 80%);
-    vertical-align: top;
-  }
-  
-  .table tr:hover {
-    background-color: hsl(213, 100%, 96%); /* Highlights rows cleanly on mouse-hover */
-  }
-  
-  .doctor-list-tags {
+    border: 1px solid #ffffff;
+}
+
+.table td {
+    padding: clamp(10px, 1.2vw, 18px);
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tr:hover {
+    background-color: hsl(213, 100%, 96%);
+}
+
+.doctor-list-tags {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+}
+
+.doc-tag {
+    color: #333;
+    font-weight: 500;
+}
+
+/* ==============================================
+   DOCTOR CHANNELLING REGISTRATION SYMMETRY FIXES
+   ============================================== */
+   .bookingBoxC {
+    /* Overrides hardcoded edge clips with clean, flexible parameters */
+    flex: 1 1 400px;
+    max-width: 520px;
+    width: 100%;
+    min-height: 350px;
+    height: auto;
+    
+    /* Removed the disruptive hard margins that caused edge clipping */
+    margin: 0 !important; 
+    
+    background-color: hsl(223, 58%, 13%);
+    padding: clamp(20px, 3.5vw, 40px); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    border-radius: 10px;
+    overflow: hidden;           
+    box-sizing: border-box;
+    transition: all 0.3s ease;  
+}
+
+/* ====================================================
+    MOBILE VIEWPORTS MEDIA COLLAPSE CONTROLS (<= 800px)
+   ==================================================== */
+  
+   @media screen and (max-width: 1024px) {    #header-main {
+        height: 38vh; 
+    }
+
+    .main-layout-container {
+      flex-direction: column;   /* Changes to a single vertical column */
+      align-items: center;      /* Centers both cards on tablet/mobile screens */
   }
   
-  .doc-tag {
-    color: #0e1011;
+  .schedule-table-container,
+  .bookingBox {
+      max-width: 100%;          /* Allows cards to fill width safely */
+      width: 100%;
   }
+
+
+  .navbar {
+    position: relative; /* Disconnects overlay layout on tiny phone screens to prevent cluttering headings */
+    background: rgba(14, 25, 53, 0.85); /* Deepens backdrop opacity context slightly on mobile panels */
+}
+
+.navbar ul {
+    flex-direction: column; 
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar li {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar ul li.has-dropdown .dropdown-submenu {
+    position: static; 
+    transform: none;
+    width: 100%;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.85); 
+    margin-top: 6px !important;
+}
+}
+
+
+
+
+
+
+/* ==========================================================================
+   🧱 FOOTER WRAPPER SETUP
+   ========================================================================== */
+   .med-master-footer {
+    background-color: #051129; /* Ultra-deep premium health navy */
+    color: #e2e8f0;
+    font-family: 'PT Sans', system-ui, sans-serif;
+    position: relative;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+
+.footer-top-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #2ec4b6 0%, #0e1935 50%, #2ec4b6 100%);
+}
+
+.footer-bounded-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   👥 TOP ROW LAYOUT GRID
+   ========================================================================== */
+.footer-top-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr; /* Slightly widened left track for longer title string */
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+/* Logo & Brand Column Content rules */
+.footer-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.logo-text-main {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+/* 🌟 Modified to ensure long title folds beautifully without breaking alignment */
+.logo-text-sub {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2ec4b6; /* Clinical medical teal */
+    letter-spacing: 2px; 
+    margin-top: 4px;
+    line-height: 1.4;
+    max-width: 500px;
+}
+
+.brand-mission-statement {
+    color: #94a3b8;
+    line-height: 1.65;
+    font-size: 15px;
+    margin: 0 0 30px 0;
+    max-width: 540px;
+}
+
+/* Social Icon Blocks */
+.footer-social-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-icon-btn:hover {
+    background: #2ec4b6;
+    color: #051129;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46, 196, 182, 0.3);
+    border-color: #2ec4b6;
+}
+
+/* Contact Column Content Block Rules */
+.footer-column-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+}
+
+.contact-assistance-text {
+    color: #94a3b8;
+    font-size: 14.5px;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+}
+
+/* Interactive Emergency Card Block */
+.emergency-hotline-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 25px;
+    display: inline-block;
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+}
+
+.hotline-pulse-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.live-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2ec4b6;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 0 rgba(46, 196, 182, 0.4);
+    animation: pulseGlow 2s infinite;
+}
+
+.hotline-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #2ec4b6;
+}
+
+/* Adjusted font-size slightly down to accommodate phone numbers smoothly */
+.hotline-number-anchor {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    line-height: 1.1;
+    transition: color 0.2s ease;
+}
+
+.hotline-number-anchor:hover {
+    color: #2ec4b6;
+}
+
+/* Standard Contact Elements */
+.direct-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.direct-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8;
+    font-size: 14.5px;
+}
+
+.contact-inline-icon {
+    color: #2ec4b6;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.contact-link {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   🖼️ MIDDLE ROW NAV LINKS GRIDS
+   ========================================================================== */
+.footer-divider-line {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 0 45px 0;
+}
+
+.footer-middle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.links-grid-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sub-links-dual-flex {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.sub-links-dual-flex ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sub-links-dual-flex a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.sub-links-dual-flex a:hover {
+    color: #2ec4b6;
+    transform: translateX(3px);
+}
+
+.sub-links-dual-flex a.highlighted-link-item {
+    color: #ef4444; 
+    font-weight: 600;
+}
+
+.sub-links-dual-flex a.highlighted-link-item:hover {
+    color: #f87171;
+}
+
+/* ==========================================================================
+   ⚖️ BOTTOM COMPLIANCE ROW
+   ========================================================================== */
+.footer-bottom-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright-notice {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.brand-bold {
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.legal-links-dock {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+.legal-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legal-link:hover {
+    color: #94a3b8;
+}
+
+.legal-dot-separator {
+    color: rgba(255, 255, 255, 0.1);
+    user-select: none;
+}
+
+/* ==========================================================================
+   ⚡ KEYFRAMES & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.5); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 196, 182, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0); }
+}
+
+@media screen and (max-width: 960px) {
+    .footer-top-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-middle-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .med-master-footer {
+        padding-top: 50px;
+    }
+
+    .logo-text-main {
+        font-size: 36px;
+    }
+
+    .logo-text-sub {
+        font-size: 12px;
+    }
+
+    .sub-links-dual-flex {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .legal-links-dock {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+    }
+
+    .legal-dot-separator {
+        display: none; 
+    }
+    
+    .legal-links-dock a {
+        width: 100%;
+    }
+}

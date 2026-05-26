@@ -1,0 +1,1873 @@
+
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 1-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+/* ==========================================================================
+    MASTER FLEX CONTAINER (Overlapping Glass Viewport Overlay)
+   ========================================================================== */
+   .network-section-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 50px);
+    
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto 40px auto; /* Removed the positive top margin */
+    padding: clamp(15px, 3vw, 40px);
+    box-sizing: border-box;
+    
+    /* 🌟 THE OVERLAP ENGINE FIX: Pulls the layout section onto the hero slider */
+    position: relative;
+    z-index: 5; /* Forces the entire section stack to render on top of the background image layers */
+    margin-top: -5%; /* Adjust this value if you want it to overlap more or less of the image */
+}
+
+/* ==========================================================================
+    DECOUPLED HEALTH NETWORK BANNER (Color-matched to Navbar Deep Navy)
+   ========================================================================== */
+.network-banner-side {
+    flex: 0 0 clamp(280px, 25vw, 360px);
+    background-color: #0e1935; 
+    color: #ffffff;
+    padding: clamp(20px, 3vw, 35px);
+    border-radius: 16px;
+    
+    /* Deepened the shadow matrix so the dark card floats cleanly off the slider */
+    box-shadow: 0 15px 35px rgba(14, 25, 53, 0.25);
+    box-sizing: border-box;
+    
+    /* Kept sticky property enabled for desktop viewport scrolling */
+    position: sticky;
+    top: 20px;
+}
+
+.network-banner-side h2 {
+    margin-top: 0;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.network-banner-side p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 15px 0 30px 0;
+    opacity: 0.85;
+}
+
+.location-quick-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.location-quick-links li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-weight: bold;
+    font-size: 13px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.location-quick-links li:hover {
+    transform: translateX(5px);
+    color: #38bdf8;
+}
+
+/* ==========================================================================
+    VERTICAL CARDS STACK CONTAINER
+   ========================================================================== */
+.cards-vertical-stack {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+    GLASSMORPHIC INDEPENDENT CARDS (Optimized for Image/White Contrast)
+   ========================================================================== */
+.independent-round-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    /* Blended glass base context */
+    background: rgba(241, 245, 249, 0.7); 
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    
+    color: #0f172a; 
+    border-radius: 14px; 
+    padding: 20px 25px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    
+    /* Stronger structural shadow mask ensures layout clarity over image breaks */
+    box-shadow: 0 10px 30px rgba(14, 25, 53, 0.06), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* 👥 INDEPENDENT INTERACTION STATE */
+.independent-round-card:hover {
+    transform: translateY(-4px);
+    background: rgba(14, 25, 53, 0.88); 
+    color: #ffffff; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(14, 25, 53, 0.3);
+}
+
+/* Icon Badge Glass Styles */
+.card-icon {
+    font-size: 26px;
+    margin-right: 20px;
+    background: rgba(14, 25, 53, 0.06);
+    width: 54px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.independent-round-card:hover .card-icon {
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(360deg);
+}
+
+.card-info {
+    flex: 1;
+    text-align: left;
+}
+
+.card-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'PT Sans', sans-serif;
+    letter-spacing: 0.5px;
+    color: #0e1935;
+    transition: color 0.3s ease;
+}
+
+.independent-round-card:hover .card-info h3 {
+    color: #ffffff;
+}
+
+.card-info p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.independent-round-card:hover .card-info p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-action-arrow {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0e1935;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.independent-round-card:hover .card-action-arrow {
+    transform: translateX(6px);
+    color: #38bdf8;
+    opacity: 1;
+}
+
+/* ==========================================================================
+    RESPONSIVE ADJUSTMENTS FOR SMALL SCREEN DEVICES (<= 850px)
+   ========================================================================== */
+@media screen and (max-width: 850px) {
+    .network-section-container {
+        flex-direction: column;
+        align-items: center;
+        /* Pulls less aggressively on smaller mobile phones to conserve readability */
+        margin-top: -60px; 
+    }
+    
+    .network-banner-side {
+        width: 100%;
+        position: static;
+    }
+}
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 3-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+/* ==========================================================================
+   MASTER FLUID CONTAINER HOOK
+   ========================================================================== */
+   .container {
+    display: flex;            /* Activates the horizontal layout engine */
+    flex-direction: row;      /* Places elements side-by-side */
+    align-items: center;      /* Vertically aligns the text middle with the image middle */
+    
+    /* Fluid gap scales dynamically between 20px (mobile) and 50px (desktop) */
+    gap: clamp(20px, 5vw, 70px); 
+    
+    width: 100%;              /* */
+    max-width: 1200px;        /* Prevents the contents from stretching too far apart on huge monitors */
+    margin: 0 auto;           /* Centers the entire layout section block horizontally */
+    
+    /*  Added responsive padding matrix so text never hugs screen edges on mobile */
+    padding: clamp(10px, 1vw, 20px);
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+    TEXT CONTENT COLUMN WRAPPER
+   ========================================================================== */
+.textBlock {
+    /* Forces the entire text column block to scale and absorb remaining space evenly */
+    flex: 1;                  
+    display: flex;
+    flex-direction: column;   /* Keeps h2 cleanly stacked over the paragraph */
+    gap: 10px;                /* Adds healthy vertical breathing space under the heading */
+}
+
+.textBlock h2 {
+    text-align: left;         
+    color:#0e1935; 
+    font-family: 'PT Sans', sans-serif; 
+    margin: 0;                /* Removes browser default margins that disrupt alignment */
+    
+    /*  Scales typography fluidly from 24px (mobile) up to 36px (desktop) */
+    font-size: clamp(24px, 2.5vw, 36px); 
+}
+
+.textBlock p {
+    margin: 0;
+    line-height: 1.6;         /* Enhances readability */
+    color: #4a5568;           /* Softer text look */
+    
+    /*  Scales paragraph text fluidly from 15px up to 17px depending on display width */
+    font-size: clamp(15px, 0.5vw + 13px, 17px);
+}
+
+/* ==========================================================================
+   FLUID RESPONSIVE IMAGE HANDLER
+   ========================================================================== */
+.sideImage {
+    /*  Critical fluid fix. Shrinks to 100% of screen width on phones, caps at 450px on monitors */
+    width: 100%;
+    max-width: 450px;         
+    height: auto;             /* Maintains the image's original aspect ratio without distortion */
+    border-radius: 12px;      /* Softens image corners for a clean, premium layout presentation */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Adds a premium soft layout depth */
+}
+
+/* ==========================================================================
+   MOBILE BREAKPOINT BARRIER (Screens 850px wide or smaller)
+   ========================================================================== */
+@media screen and (max-width: 850px) {
+    .container {
+        flex-direction: column; /* Automatically transitions from a horizontal row to a vertical column stack */
+        text-align: center;     /* Centers all aligned text contexts perfectly on touch viewports */
+    }
+    
+    .text-block h2 {
+        text-align: center;     /* Centers heading when layout collapses */
+    }
+    
+    .sideImage {
+        max-width: 100%;        /* Allows the layout graphic to safely span mobile widths cleanly */
+        margin-top: 10px;       
+    }
+}
+
+/* ==========================================================================
+    METRICS COUNTER STRIP LAYOUT
+   ========================================================================== */
+   .stats-ribbon-container {
+
+    margin-left: 20%;
+    margin-bottom: 5%;
+    width: 60%;
+    /* Matches color profile from your navbar and healthcare panels */
+    background-color: #0e1935; 
+    margin-top: clamp(40px, 6vw, 80px); /* Gives healthy separation space under the image row */
+    padding: clamp(20px, 1vw, 25px) 0;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(14, 25, 53, 0.15);
+    border-radius: 20px;
+}
+
+.stats-ribbon-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around; /* Distributes stat modules evenly */
+    
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Individual Stat Module Block Structure */
+.stat-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*  SEPARATOR BARS: Applies the bright vertical lines except on the last module item */
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    width: 2px;
+    height: 70%;
+    background-color: #06b6d4; /* Vibrant active sky-blue line accent */
+    opacity: 0.8;
+}
+
+/* Add this at the bottom of your existing Home.css file */
+
+.stat-item h3 {
+    color: #ffffff;
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 2.8vw, 42px);
+    letter-spacing: 0.5px;
+    
+    /*  Subtle scale animation pop when mounting values */
+    animation: statPop 0.4s ease-out;
+}
+
+@keyframes statPop {
+    0% {
+        transform: scale(0.96);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.stat-item p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: clamp(12px, 1vw + 2px, 14px);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+    MOBILE RESPONSIVE ADAPTATION (Screens <= 768px Devices)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .stats-ribbon-content {
+        flex-direction: column; /* Collapses ribbon horizontally to vertical cards layout on mobile */
+        gap: 30px;
+    }
+
+    /* Removes horizontal right borders and adds a lower bottom divider outline instead */
+    .stat-item:not(:last-child)::after {
+        right: 25%;
+        top: auto;
+        bottom: -15px;
+        width: 50%;
+        height: 1px;
+    }
+}
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 4-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+/* ==========================================================================
+    PARALLAX CONTAINER ENGINE
+   ========================================================================== */
+   .convenience-parallax-section {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    padding: clamp(40px, 6vw, 80px) 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*  THE PARALLAX SECRET MIX: */
+    background-image: url('C:\Users\user\Documents\Hospital-System\client\src\images\HeaderImages\IMG1.png'); /* Swap with your desired background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Holds image rock-solid during scrolling */
+    
+    overflow: hidden;
+}
+
+/* Cinematic tint mask ensures absolute text contrast */
+.parallax-dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(14, 25, 53, 0.85) 0%, 
+        rgba(15, 23, 42, 0.75) 100%
+    );
+    z-index: 1;
+}
+
+/* ==========================================================================
+    CONTENT STRUCTURE
+   ========================================================================== */
+.convenience-content-wrapper {
+    position: relative;
+    z-index: 2; /* Sits cleanly above the dark tint overlay */
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.convenience-header {
+    text-align: left;
+    margin-bottom: clamp(30px, 5vw, 55px);
+    color: #ffffff;
+}
+
+.convenience-header .subtitle {
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 500;
+    opacity: 0.9;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+}
+
+.convenience-header h2 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 800;
+    color: #2ec4b6; /* Premium healthcare teal pop */
+    margin: 0;
+}
+
+/* ==========================================================================
+    RESPONSIVE 4-COLUMN CARDS GRID
+   ========================================================================== */
+.convenience-cards-grid {
+    display: grid;
+    /* Effortlessly creates a clean 4-column desktop layout that breaks automatically */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+/* ==========================================================================
+    WHITE FEATURE CARDS
+   ========================================================================== */
+.convenience-white-card {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px; /* Smooth rounded corners */
+    text-align: left;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    
+    /* Soft shadow to give them a premium physical feel */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/*  Interactive hover state */
+.convenience-white-card:hover {
+    transform: translateY(-6px); /* Moves card smoothly upward */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.convenience-card-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    color: #2ec4b6;
+}
+
+.convenience-white-card h3 {
+    margin: 0 0 10px 0;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #0e1935; /* Dark corporate navy text */
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+.convenience-white-card p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #64748b; /* Highly readable slate grey */
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+    MOBILE ATTACHMENT FALLBACK
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .convenience-parallax-section {
+        /* Mobile safari/chrome struggle with fixed image rendering memory blocks. 
+           This smoothly falls back to standard scrolling for performance stability */
+        background-attachment: scroll; 
+    }
+}
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 5-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+
+/* ==========================================================================
+    BASE LAYOUT FRAMEWORK
+   ========================================================================== */
+   .feedback-master-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: clamp(60px, 8vw, 100px) 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.feedback-asymmetric-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(30px, 5vw, 70px);
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* ==========================================================================
+    LEFT BRAND BLOCK
+   ========================================================================== */
+.feedback-brand-card {
+    flex: 0 0 clamp(320px, 30vw, 420px);
+    background-color: hsl(223, 58%, 13%); /* Cohesive deep navy accent match */
+    color: hsl(0, 0%, 100%);
+    padding: clamp(30px, 4vw, 50px);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px hsla(223, 58%, 13%, 0.12);
+    box-sizing: border-box;
+}
+
+/* Subtle underlying colored gradient ambient glow effect */
+.brand-card-glow {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, hsla(174, 62%, 47%, 0.4) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+}
+
+.feedback-tagline {
+    color: hsl(174, 62%, 47%); /* Medical teal tint marker */
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin: 0 0 12px 0;
+}
+
+.feedback-brand-card h2 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: clamp(26px, 2.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+
+.brand-card-desc {
+    font-size: 14.5px;
+    color: hsl(213, 27%, 84%);
+    line-height: 1.6;
+    margin: 0 0 40px 0;
+}
+
+/* ==========================================================================
+    PREMIUM COMPACT SCROLLER CONTROL DOCK
+   ========================================================================== */
+.feedback-scroller-dock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 25px;
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+    position: relative;
+    z-index: 5;
+}
+
+/* Index Number Metric Tracker Styles */
+.scroller-counter {
+    display: flex;
+    align-items: baseline;
+    font-family: 'PT Sans', sans-serif;
+    gap: 4px;
+}
+
+.current-count {
+    font-size: 24px;
+    font-weight: 800;
+    color: hsl(174, 62%, 47%); /* High contrast medical teal focus */
+}
+
+.counter-divider {
+    font-size: 14px;
+    color: hsl(215, 19%, 35%);
+    padding: 0 2px;
+}
+
+.total-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: hsl(215, 20%, 65%);
+}
+
+/* Arrow Button Container */
+.scroller-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* Premium Minimalist Scroll Buttons */
+.scroller-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    background: hsla(0, 0%, 100%, 0.031);
+    color: hsl(0, 0%, 100%);
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    outline: none;
+    user-select: none;
+}
+
+/* Button Hover State Interactions */
+.scroller-btn:hover {
+    background-color: hsl(174, 62%, 47%); /* Fills button with accent color on hover */
+    color: hsl(223, 58%, 13%);            /* Deep navy text contrast */
+    border-color: hsl(174, 62%, 47%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px hsla(174, 62%, 47%, 0.3);
+}
+
+.scroller-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+    RIGHT SLIDER STAGE VIEW
+   ========================================================================== */
+.feedback-stage-view {
+    flex: 1;
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+}
+
+/* ==========================================================================
+    TRANSITIONS & INTERACTION LAYERS
+   ========================================================================== */
+.feedback-fluid-bubble {
+    position: absolute;
+    width: 100%;
+    background: hsla(210, 40%, 98%, 0.85); /* Frost base */
+    border: 1px solid hsla(223, 58%, 13%, 0.05);
+    border-radius: 32px;
+    padding: clamp(30px, 4vw, 45px);
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px hsla(222, 47%, 11%, 0.04);
+    
+    /* Animation curve anchors */
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.quote-decorative-mark {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 120px;
+    font-family: serif;
+    line-height: 1;
+    color: hsl(214, 32%, 91%);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Active Card State Layout Context */
+.feedback-fluid-bubble.dynamic-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scale(1);
+    z-index: 3;
+    background: hsl(0, 0%, 100%);
+    border-left: 5px solid hsl(174, 62%, 47%);
+    box-shadow: 0 25px 50px hsla(223, 58%, 13%, 0.08);
+}
+
+/* Preview Peek State Framework Layout (Incoming Next Card Hint) */
+.feedback-fluid-bubble.dynamic-incoming {
+    opacity: 0.35;
+    pointer-events: none;
+    transform: translateX(40px) scale(0.93);
+    z-index: 1;
+}
+
+.feedback-fluid-bubble.dynamic-hidden {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.9);
+    z-index: 0;
+}
+
+/* Internal Card Typography & Profiles */
+.bubble-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.treatment-badge {
+    background-color: #f0fdfa;
+    color: hsl(175, 77%, 26%);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+.feedback-date {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.patient-testimonial-text {
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.7;
+    color: hsl(215, 25%, 27%);
+    margin: 0 0 30px 0;
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+}
+
+.bubble-footer-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    background-color: hsl(223, 58%, 13%);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.profile-identity h4 {
+    margin: 0 0 2px 0;
+    font-size: 15px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.star-rating {
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+    TABLET & MOBILE VIEWPORTS SYSTEM CONVERSIONS (<= 850px devices)
+   ========================================================================== */
+@media screen and (max-width: 850px) {
+    .feedback-asymmetric-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .feedback-brand-card {
+        flex: none;
+        width: 100%;
+    }
+
+    .feedback-scroller-dock {
+        margin-top: 10px;
+        padding-top: 20px;
+    }
+
+    .feedback-stage-view {
+        width: 100%;
+        min-height: 340px;
+    }
+
+    .feedback-fluid-bubble.dynamic-incoming {
+        display: none; /* Drop complex overlapping previews on smaller viewports */
+    }
+}
+
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 6-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+
+/* ==========================================================================
+    MAIN HERO FRAMEWORK & BACKGROUND LAYERS
+   ========================================================================== */
+   .medical-hero-wrapper {
+    width: 100%;
+    min-height: clamp(500px, 75vh, 650px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+
+    background-image: url('C:\Users\user\Documents\Hospital-System\client\src\pages\Home Page\DocImage.png'); /* Swap with your desired background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Holds image rock-solid during scrolling */
+    
+    overflow: hidden;
+}
+
+/* Cinematic tint mask ensures absolute text contrast */
+.parallax-dark-overlay-for-hero-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(14, 25, 53, 0.85) 0%, 
+        rgba(15, 23, 42, 0.75) 100%
+    );
+    z-index: 1;
+}
+
+
+/* Subtle digital blueprint grid overlay effect */
+.hero-mesh-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 2px, transparent 2px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* Fluid ambient high-tech teal glow background canvas */
+.hero-abstract-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.15) 0%, rgba(14, 25, 53, 0) 70%);
+    top: -10%;
+    right: -5%;
+    pointer-events: none;
+}
+
+.hero-central-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* ==========================================================================
+    LEFT EDITORIAL CONTENT CONTROLS
+   ========================================================================== */
+.hero-mini-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 196, 182, 0.1);
+    border: 1px solid rgba(46, 196, 182, 0.25);
+    padding: 6px 14px;
+    border-radius: 30px;
+    color: #f9fffe; /* Accent teal focus */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    animation: badgePulse 2s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.hero-editorial-block h1 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: clamp(36px, 4.2vw, 56px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0 0 20px 0;
+}
+
+.teal-gradient-text {
+    background: linear-gradient(135deg, #04ffe6 0%, #3dccc0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subsidiary-text {
+    font-size: clamp(15px, 1.2vw, 17px);
+    color: #cbd5e1;
+    line-height: 1.65;
+    margin: 0 0 35px 0;
+    max-width: 560px;
+}
+
+.hero-action-dock {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+    REENGINEERED HIGH-CONTRAST INTERACTIVE CTA BUTTON
+   ========================================================================== */
+.premium-hero-btn {
+    background: #3effec;
+    color: #0e1935;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(46, 196, 182, 0.3);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-hero-btn:hover {
+    background: #ffffff;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.btn-arrow-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.premium-hero-btn:hover .btn-arrow-icon {
+    transform: translateX(4px);
+}
+
+.hero-support-tag {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hero-support-tag strong {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.hero-support-tag span {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* ==========================================================================
+    RIGHT SIDE VISUAL SYSTEM ASSETS
+   ========================================================================== */
+.hero-visual-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Glassmorphic Base Panel Card Frame */
+.hero-main-card-asset {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border-radius: 28px;
+    padding: 35px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.inner-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.status-indicator {
+    font-size: 11px;
+    font-weight: 800;
+    color: #2ec4b6;
+    text-transform: uppercase;
+    background: rgba(46,196,182,0.12);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.hero-main-card-asset h3 {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.hero-main-card-asset p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+}
+
+/* Visual Placeholder Simulation Chart Component */
+.card-mock-graph {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 4px;
+}
+
+.graph-bar {
+    flex: 1;
+    background: linear-gradient(to top, rgba(46,196,182,0.2), rgba(46,196,182,0.7));
+    border-radius: 4px 4px 0 0;
+    animation: barGrow 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes barGrow {
+    from { height: 0; }
+}
+
+/* Floating Peripheral Metric Cards */
+.floating-metric-pill {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 20px 40px rgba(14,25,53,0.15);
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.floating-metric-pill:hover {
+    transform: scale(1.03) translateY(-2px);
+}
+
+.metric-one {
+    top: 10%;
+    left: -5%;
+}
+
+.metric-two {
+    bottom: 8%;
+    right: -2%;
+}
+
+.pill-icon {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    background: #f0fdfa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pill-info h4 {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    color: #0e1935;
+    font-weight: 700;
+}
+
+.pill-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* ==========================================================================
+    SYSTEM MEDIA ADAPTATIONS FOR RESPONSIVE MEDIA CONVERSIONS (<= 990px)
+   ========================================================================== */
+@media screen and (max-width: 990px) {
+    .hero-central-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .hero-mini-badge {
+        justify-content: center;
+    }
+
+    .hero-subsidiary-text {
+        margin: 0 auto 35px auto;
+    }
+
+    .hero-action-dock {
+        justify-content: center;
+    }
+
+    .hero-visual-stage {
+        margin-top: 20px;
+    }
+    
+    .metric-one {
+        left: 5%;
+    }
+    
+    .metric-two {
+        right: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .floating-metric-pill {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin-bottom: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .hero-visual-stage {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .hero-main-card-asset {
+        max-width: 100%;
+    }
+}
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 7-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+/* ==========================================================================
+    MASTER BASE WRAPPER SETUP
+   ========================================================================== */
+   .updates-master-wrapper {
+    width: 100%;
+    background-color: #f8fafc; /* Crisp slate-white background */
+    padding: clamp(60px, 8vw, 100px) 20px;
+    box-sizing: border-box;
+}
+
+.updates-bounded-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+    SECTION TITLE HEADER LAYOUT
+   ========================================================================== */
+.updates-header-dock {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    gap: 30px;
+}
+
+.updates-mini-badge {
+    color: #2ec4b6; /* High-contrast medical teal */
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.updates-header-dock h2 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: clamp(28px, 2.5vw, 38px);
+    font-weight: 800;
+    color: #0e1935; /* Matching brand deep navy tone */
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Primary Navigation Button Component */
+.global-archive-btn {
+    background-color: #0e1935;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(14, 25, 53, 0.1);
+}
+
+.global-archive-btn:hover {
+    background-color: #2ec4b6;
+    color: #0e1935;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 196, 182, 0.25);
+}
+
+.btn-arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.global-archive-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+    ASYMMETRIC GRID CONFIGURATION MATRIX
+   ========================================================================== */
+.updates-asymmetric-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px;
+}
+
+/* Base Card Styles */
+.update-editorial-card {
+    background: #ffffff;
+    border: 1px solid rgba(14, 25, 53, 0.04);
+    border-radius: 24px;
+    padding: clamp(30px, 4vw, 45px); /* Increased padding for overall better breathing room */
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-ambient-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.03) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.update-editorial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(14, 25, 53, 0.07);
+    border-color: rgba(46, 196, 182, 0.2);
+}
+
+.update-editorial-card:hover .card-ambient-overlay {
+    opacity: 1;
+}
+
+/* ==========================================================================
+    FEATURED CARD INTERNAL STACK LAYOUT (4D CT Scanner Block)
+   ========================================================================== */
+.featured-block {
+    grid-row: 1 / span 2;
+    background: linear-gradient(to bottom right, #ffffff, #f0fdfa);
+    border-left: 5px solid #2ec4b6;
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Managed via individual elements for precise spacing control */
+    align-items: stretch;
+}
+
+.standard-block {
+    grid-column: 2;
+}
+
+/* Structural wrapper separating text elements */
+.card-body-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/*  Image container layout block - Cleaned up to fix width and remove background stretch */
+.card-media-aside {
+    width: 100%;
+    max-width: 580px; /* Binds the image container width so it doesn't sprawl out too wide */
+    margin: 15px auto 25px auto; /* Adds clean separation above and below the image frame */
+    height: 240px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: transparent; /* 🌟 Removed dark background for a clean, integrated look */
+    padding: 0;
+    box-sizing: border-box;
+    margin-top: 10%;
+}
+
+/* Fit parameters matching wide aspect ratio assets */
+.aside-featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Keeps the full landscape machinery context beautifully formatted */
+    border-radius: 0;
+    box-shadow: 0 8px 24px rgba(14, 25, 53, 0.06); /* Added elegant soft shadows directly to the photo border */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.update-editorial-card:hover .aside-featured-img {
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+    CARD TYPOGRAPHY & ELEMENTS SYSTEM
+   ========================================================================== */
+.card-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px; /* More clearance below category tags */
+}
+
+.update-tag-pill {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #0f766e;
+    background: rgba(46, 196, 182, 0.12);
+    padding: 5px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+}
+
+.update-calendar-date {
+    font-size: 13px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.update-headline {
+    font-family: 'PT Sans', sans-serif;
+    color: #0e1935;
+    margin: 0 0 18px 0; /* Balanced headline spacing */
+    line-height: 1.35;
+}
+
+.featured-block .update-headline {
+    font-size: clamp(22px, 1.9vw, 26px);
+    font-weight: 800;
+}
+
+.standard-block .update-headline {
+    font-size: clamp(18px, 1.5vw, 21px);
+    font-weight: 700;
+}
+
+.update-summary-prose {
+    color: #475569;
+    line-height: 1.7; /* Increased line-height so paragraphs do not look tight/packed */
+    margin: 0 0 10px 0;
+    font-size: 15px;
+}
+
+/* Dynamic Inline Links */
+.card-action-footer {
+    margin-top: auto; /* Cleanly anchors link lines along card baseline */
+    padding-top: 5px;
+}
+
+.update-hyperlink-anchor {
+    color: #0e1935;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.link-chevron {
+    transition: transform 0.2s ease;
+}
+
+.update-editorial-card:hover .update-hyperlink-anchor {
+    color: #2ec4b6;
+}
+
+.update-editorial-card:hover .link-chevron {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+    ADAPTIVE MEDIA VIEWPORT RESPONSIVE SYSTEM CONVERSIONS
+   ========================================================================== */
+@media screen and (max-width: 960px) {
+    .updates-asymmetric-grid {
+        grid-template-columns: 1fr; /* Flattens columns dynamically into clean single rows */
+    }
+
+    .featured-block {
+        grid-row: auto;
+    }
+
+    .standard-block {
+        grid-column: auto;
+    }
+    
+    .card-media-aside {
+        max-width: 100%; /* Allows image container expansion context on mobile tracks */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .updates-header-dock {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .global-archive-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card-media-aside {
+        height: 180px; /* Scales component boundaries on small screens */
+        margin-bottom: 20px;
+    }
+}
+
+
+/********************************************************************************************************************************
+-----------------------------------------------------------SECTION 8-------------------------------------------------------------
+*********************************************************************************************************************************/
+
+
+/* ==========================================================================
+    MASTER SETUP & LAYOUT WRAPPERS
+   ========================================================================== */
+   .sjgh-network-section {
+    background-color: #ffffff;
+    padding: clamp(60px, 4vw, 100px) 0;
+    position: relative;
+    overflow: hidden;
+    font-family: 'PT Sans', system-ui, sans-serif;
+
+}
+
+.sjgh-bounded-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+    INTERACTIVE DOT-MATRIX BACKGROUND PATTERN
+   ========================================================================== */
+.sjgh-matrix-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    padding: 40px;
+    opacity: 0.15;
+    pointer-events: none;
+    user-select: none;
+}
+
+.matrix-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #2ec4b6;
+    border-radius: 50%;
+    animation: dotWave 4s infinite ease-in-out;
+    animation-delay: var(--delay);
+}
+
+/* ==========================================================================
+   ℹ TOP SECTION: BRAND PARAGRAPH LAYOUT
+   ========================================================================== */
+.sjgh-info-row {
+    margin-bottom: 60px;
+    max-width: 680px;
+}
+
+.sjgh-mini-badge {
+    color: #2ec4b6;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.sjgh-title-block h2 {
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 800;
+    color: #0e1935;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.sjgh-narrative-prose {
+    font-size: 15.5px;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ==========================================================================
+    MIDDLE SECTION: INTERACTIVE BRAND CARD MATRICES
+   ========================================================================== */
+.sjgh-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 70px;
+}
+
+.sjgh-logo-card {
+    background: #f8fafc;
+    border: 1px solid rgba(14, 25, 53, 0.04);
+    border-radius: 20px;
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.4s ease, 
+                box-shadow 0.4s ease;
+}
+
+/* Highlight variation for critical care visibility focus */
+.highlighted-center-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0fdfa 100%);
+    border-color: rgba(46, 196, 182, 0.15);
+}
+
+.card-pulse-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(46, 196, 182, 0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+/* Hover dynamics */
+.sjgh-logo-card:hover {
+    transform: translateY(-5px);
+    background-color: #ffffff;
+    box-shadow: 0 20px 40px rgba(14, 25, 53, 0.06);
+    border-color: rgba(5, 20, 19, 0.25);
+}
+
+.sjgh-logo-card:hover .card-pulse-glow {
+    opacity: 1;
+}
+
+/* Logo Crest Graphic Mockups */
+.logo-emblem-wrapper {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.emblem-crest {
+    font-size: 16px;
+    font-weight: 900;
+    color: #0e1935;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.text-teal {
+    color: #0f766e;
+}
+
+.emblem-ring-accent {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed rgba(14, 25, 53, 0.15);
+    border-radius: 50%;
+    transition: transform 0.8s ease;
+}
+
+.sjgh-logo-card:hover .emblem-ring-accent {
+    transform: rotate(90deg);
+    border-color: #2eb3c4;
+}
+
+.emblem-ring-accent-ICU {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed rgba(14, 25, 53, 0.15);
+    border-radius: 50%;
+    transition: transform 0.8s ease;
+}
+
+.sjgh-logo-card:hover .emblem-ring-accent-ICU {
+    transform: rotate(90deg);
+    border-color: #ff0000;
+    animation: microPulse 1.5s infinite ease-in-out;
+}
+
+/* Constant subtle pulsing ring effect for important center card */
+.pulsing-ring {
+    border-style: solid;
+    border-color: rgb(235, 0, 0);
+}
+
+.logo-card-meta h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0e1935;
+    margin: 0 0 6px 0;
+}
+
+.logo-sub-tag {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+    BOTTOM SECTION: QUALITY LABELS ROW
+   ========================================================================== */
+.sjgh-accreditations-row {
+    background-color: #0e1935;
+    border-radius: 24px;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 15px 35px rgba(14, 25, 53, 0.15);
+}
+
+.accreditations-content-dock {
+    max-width: 700px;
+}
+
+.accreditations-content-dock h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+}
+
+.accreditations-content-dock p {
+    font-size: 14.5px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Interactive Modern CTA Component Button */
+.sjgh-interactive-btn {
+    background-color: #2ec4b6;
+    color: #0e1935;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(46, 196, 182, 0.25);
+}
+
+.sjgh-interactive-btn:hover {
+    background-color: #ffffff;
+    color: #0e1935;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.btn-chevron-svg {
+    transition: transform 0.3s ease;
+}
+
+.sjgh-interactive-btn:hover .btn-chevron-svg {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+    STRUCTURAL ANIMATION KEYFRAMES
+   ========================================================================== */
+@keyframes dotWave {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.4); opacity: 1; background-color: #0e1935; }
+}
+
+@keyframes microPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 0.4; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* ==========================================================================
+    ADAPTIVE MEDIA VIEWPORT RESPONSIVE SYSTEM CONVERSIONS
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .sjgh-logos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .sjgh-accreditations-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px;
+        gap: 25px;
+    }
+
+    .sjgh-interactive-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sjgh-matrix-overlay {
+        display: none; /* Turns off matrix layers cleanly on narrow tablet screens */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sjgh-network-section {
+        padding: 50px 0;
+    }
+
+    .sjgh-accreditations-row {
+        padding: 30px 24px;
+    }
+}

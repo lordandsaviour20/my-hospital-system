@@ -140,7 +140,6 @@ app.post('/api/checkup', async (req, res) => {
 });
 
 //  VISITING PASS SYSTEM ENDPOINTS
-
   
   // 1. FIND ADMITTED PATIENT BY LOCATION
   app.get('/api/visiting/patient', async (req, res) => {

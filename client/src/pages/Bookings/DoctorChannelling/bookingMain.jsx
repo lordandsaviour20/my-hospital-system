@@ -1,6 +1,6 @@
 import React from 'react';
 import ChanSchedule from './ClinicSchedule';
-import DChannel from './ChannellingSystem';
+import DoctorChannelling from './ChannellingSystem';
 
 function bookingMain(){
     return(
@@ -19,7 +19,7 @@ function bookingMain(){
                 <ChanSchedule />
             </div>
             <div style={{ flex: '1 1 400px', maxWidth: '500px', width: '100%' }}>
-                <DChannel />
+                <DoctorChannelling />
             </div>
         </div>
     );
