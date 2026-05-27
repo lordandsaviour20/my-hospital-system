@@ -1,0 +1,1179 @@
+/* ==========================================================================
+    MASTER HERO ARCHITECTURE
+   ========================================================================== */
+   .sjgh-historical-hero {
+    position: relative;
+    background-color: #060e1f; /* Premium midnight background setup */
+    padding: clamp(140px, 12vw, 180px) 24px clamp(100px, 8vw, 140px) 24px;
+    
+    /*  THE ANTI-SCROLLBAR SHIELD: Pin-locks content elements tightly within boundaries */
+    max-width: 100% !important;
+    width: 100%;
+    
+    font-family: 'PT Sans', system-ui, sans-serif !important;
+}
+
+/*  Unique Architectural Glow & Vector Mesh Layer */
+.mesh-ambient-canvas {
+    position: absolute;
+    inset: 0;
+    
+    background-image: 
+        linear-gradient(rgba(46, 196, 182, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 196, 182, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(circle at 30% 50%, black, transparent 80%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.aurora-glow-focal {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.1) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 1;
+    
+}
+
+/* Fluid Asymmetric Row Grid */
+.hero-uncluttered-canvas {
+    
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(24px, 4vw, 80px); /* Gracefully handles layouts across varying screen sizes */
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+    LEFT COLUMN METRICS
+   ========================================================================== */
+.historical-text-column {
+    text-align: left;
+    
+}
+
+.diplomatic-tribute-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+}
+
+.tribute-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.historical-main-title {
+    font-size: clamp(38px, 4vw, 56px);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0 0 24px 0;
+    letter-spacing: -1px;
+}
+
+/* Unique Platform Gradient Mesh Type */
+.unique-gradient-span {
+    background: linear-gradient(90deg, #2ec4b6 0%, #a5f3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 45px rgba(46, 196, 182, 0.15);
+}
+
+.historical-prose-summary {
+    font-size: clamp(16px, 1.1vw, 17px);
+    line-height: 1.75;
+    color: #94a3b8;
+    margin: 0 0 35px 0;
+}
+
+.historical-action-bar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-pill-btn {
+    background-color: #ffffff;
+    color: #060e1f;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.history-pill-btn:hover {
+    background-color: #2ec4b6;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(46, 196, 182, 0.2);
+}
+
+.history-pill-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.history-pill-btn:hover svg {
+    transform: translateX(4px);
+}
+
+/* Integrated Sub-Philosophy Matrix */
+.inline-philosophy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.philosophy-item h4 {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.philosophy-item p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+}
+
+.vertical-accent-divider {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid rgba(46, 196, 182, 0.15);
+}
+
+/* ==========================================================================
+    RIGHT COLUMN ARCHIVAL GRAPHICS
+   ========================================================================== */
+.historical-portrait-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px; /* Creates inner room spacing buffer */
+}
+
+.archival-portrait-frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 500px;
+    border-radius: 24px;
+    background-color: #0b1528;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.frame-geometric-border {
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(46, 196, 182, 0.15);
+    border-radius: 32px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.archival-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    filter: grayscale(15%) brightness(95%);
+    transition: filter 0.4s ease;
+}
+
+.archival-portrait-frame:hover .archival-image {
+    filter: grayscale(0%) brightness(100%);
+}
+
+/* Floating Non-Bleeding Caption Frame */
+.portrait-caption-card {
+    position: absolute;
+    bottom: -25px;
+    
+    /* CENTERING REMEDY: Keeps card anchored inside its structural limits without breaking margins */
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 30px); /* Safely leaves an inset cushion room width */
+    
+    background: rgba(11, 21, 40, 0.801);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 22px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 3;
+}
+
+.caption-inner-content h5 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+}
+
+.caption-inner-content p {
+    font-size: 12px;
+    color: #2ec4b6;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px 0;
+}
+
+.quote-tribute-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #94a3b8;
+    font-style: italic;
+    display: block;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 10px;
+}
+
+/* ==========================================================================
+   SYSTEM MEDIA INLINE BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 1100px) {
+    .hero-uncluttered-canvas {
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+    
+    .historical-portrait-column {
+        order: -1; /* Flips picture block layout to top row stream on smaller devices */
+        padding: 0 20px;
+    }
+
+    .archival-portrait-frame {
+        max-width: 420px;
+        height: 520px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sjgh-historical-hero {
+        padding-top: 120px;
+    }
+
+    .historical-action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .history-pill-btn {
+        width: 100%; /* 🛡️ CHANGED: Safely fits parent container limits without side spill */
+        justify-content: center;
+    }
+
+    .inline-philosophy-row {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .vertical-accent-divider {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid rgba(46, 196, 182, 0.15);
+        padding-top: 20px;
+    }
+    
+    .portrait-caption-card {
+        width: calc(100% - 10px);
+    }
+}
+
+
+
+
+.sjgh-leadership-section {
+    padding: 25px 24px;
+    background-color: #f8fafc; /* Crisp white-gray tint background */
+    font-family: 'PT Sans', system-ui, sans-serif;
+}
+
+.leadership-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.leadership-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+}
+
+.leadership-mini-tag {
+    color: #000000;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.leadership-header h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: #0e1935; /* Premium deep healthcare navy */
+    margin: 0 0 16px 0;
+}
+
+.leadership-header p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==========================================================================
+   👥 SPLIT PROFILE GRID SYSTEM
+   ========================================================================== */
+.leadership-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Gives the staff card slightly more visual space */
+    gap: 40px;
+    align-items: stretch;
+}
+
+.director-profile-card,
+.staff-overview-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(14, 25, 53, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s ease;
+}
+
+.director-profile-card:hover,
+.staff-overview-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(14, 25, 53, 0.07);
+}
+
+/* ==========================================================================
+    PHOTO CONTAINER MATRICES
+   ========================================================================== */
+.profile-image-frame {
+    width: 100%;
+    height: 360px; /* Uniform height bounding crop */
+    position: relative;
+    overflow: hidden;
+    background-color: #0e1935; /* Fallback baseline background */
+}
+
+.leader-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps scaling pristine without distortion */
+    object-position: center top;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.director-profile-card:hover .leader-photo,
+.staff-overview-card:hover .leader-photo {
+    transform: scale(1.04); /* Subtle upscale micro-animation on hover */
+}
+
+/* Floating Badges On Top of Images */
+.frame-clinical-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.credential-pill {
+    background-color: #0e1935;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(14, 25, 53, 0.2);
+    display: inline-block;
+}
+
+.clinical-teal-pill {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+    DATA & TEXT PACKAGING
+   ========================================================================== */
+.profile-details-box {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.profile-details-box h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0e1935;
+    margin: 0 0 6px 0;
+}
+
+.leader-qualification {
+    font-size: 14px;
+    color: #434444;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-accent-line {
+    border: 0;
+    height: 2px;
+    background-color: #f1f5f9;
+    width: 100%;
+    margin: 0 0 20px 0;
+}
+
+.leader-message {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Inner Custom Badges for Staff Metrics */
+.staff-sub-metrics {
+    display: flex;
+    gap: 15px;
+    margin-top: auto; /* Pushes counters beautifully to the card footer base */
+    padding-top: 30px;
+    flex-wrap: wrap;
+}
+
+.metric-badge {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 100px;
+}
+
+.metric-badge strong {
+    font-size: 18px;
+    color: #0e1935;
+    font-weight: 800;
+}
+
+.metric-badge span {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+    ADAPTIVE INTERFACE VIEWPORTS
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .leadership-split-grid {
+        grid-template-columns: 1fr; /* Collapses into stack rows gracefully on tablets */
+        gap: 30px;
+    }
+    
+    .profile-image-frame {
+        height: 380px; /* Extends bounds slightly on larger screen rows */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sjgh-leadership-section {
+        padding: 60px 24px;
+    }
+
+    .profile-details-box {
+        padding: 30px 20px;
+    }
+
+    .profile-image-frame {
+        height: 280px;
+    }
+    
+    .staff-sub-metrics {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    .metric-badge {
+        width: 100%;
+    }
+}
+
+
+
+/* ==========================================================================
+    MAIN DASHBOARD CONTAINMENT
+   ========================================================================== */
+.sjgh-dashboard-stats {
+    background-color: #060e1f; 
+    padding: clamp(50px, 6vw, 80px) 24px; /* Reduced vertical padding from original layout */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Master Balanced Metric Grid */
+.stats-metric-container {
+    max-width: 1200px; /* Reduced container max-width to pull components closer */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 24px; /* Tighter gap configuration to stop large gaps */
+}
+
+/* ==========================================================================
+    DATA ELEMENT CARDS
+   ========================================================================== */
+.metric-card {
+    background: rgba(11, 21, 40, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px; /* Cleaner, tighter modern corner radius */
+    padding: 32px; /* Streamlined internal padding to reduce empty whitespace */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Row Extension Rule (The Headline Block) */
+.metric-card-headline {
+    grid-column: span 2; 
+    background: linear-gradient(135deg, rgba(14, 25, 53, 0.6) 0%, rgba(46, 196, 182, 0.02) 100%);
+    border-color: rgba(46, 196, 182, 0.08);
+}
+
+/* Decorative Card Inner Glow Orbs */
+.card-ambient-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.metric-content {
+    position: relative;
+    z-index: 2;
+}
+
+.metric-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2ec4b6;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+}
+
+/* 🖋️ TYPOGRAPHY CHANGES: Cinzel for Numbers, Inter for Content */
+.metric-value {
+    font-family: 'PT Sans'; /* Sharp corporate look */
+    font-size: clamp(32px, 3vw, 44px); /* Optimized down to prevent excessive scaling */
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.5px;
+}
+
+.metric-value .value-unit {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    letter-spacing: 0px;
+    margin-left: 4px;
+}
+
+.metric-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+}
+
+.metric-card-headline .metric-title {
+    font-size: 19px;
+}
+
+.metric-prose {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #8a99ad;
+    margin: 0;
+}
+
+/* ==========================================================================
+   📈 LINE DECORATIONS
+   ========================================================================== */
+.metric-visual-pipeline {
+    display: flex;
+    gap: 6px;
+    margin-top: 24px;
+}
+
+.pipeline-bar {
+    height: 2px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 1px;
+}
+
+.pipeline-bar.bar-active {
+    background: #2ec4b6;
+}
+
+.metric-sparkline {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.sparkline-svg {
+    width: 100%;
+    height: 24px;
+    overflow: visible;
+}
+
+/* Hover Responses */
+.metric-card:hover {
+    transform: translateY(-3px);
+    background: rgba(14, 25, 53, 0.5);
+    border-color: rgba(46, 196, 182, 0.15);
+}
+
+/* ==========================================================================
+   📱 SYSTEM RESPONSIVE LAYOUT RESPONSES
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .stats-metric-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .stats-metric-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .metric-card-headline {
+        grid-column: span 1;
+    }
+    
+    .metric-card {
+        padding: 24px;
+    }
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   🧱 MASTER CANVAS SETUP (White, Black, & Ash Theme)
+   ========================================================================== */
+.sjgh-matrix-history {
+    background-color: #ffffff; /* Flipped back completely to pure white */
+    padding: clamp(80px, 10vw, 0px) 24px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   🖋️ ASYMMETRIC EDITORIAL HEADER
+   ========================================================================== */
+.matrix-editorial-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 50/50 modern split grid */
+    gap: 40px;
+    border-bottom: 2px solid #09090b; /* Thick stark solid black rule line */
+    padding-bottom: 40px;
+    margin-bottom: 80px;
+    align-items: flex-end;
+}
+
+.matrix-mini-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #4b5563; /* Slate Ash Gray */
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.matrix-main-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    color: #09090b; /* Pure Velvet Black */
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.matrix-subtitle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4b5563; /* Slate Gray text */
+    margin: 0;
+    max-width: 480px;
+}
+
+/* ==========================================================================
+   🔲 THE SHIFT MATRIX FLOW (No vertical central lines)
+   ========================================================================== */
+.matrix-stream {
+    display: flex;
+    flex-direction: column;
+}
+
+.matrix-row {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Balanced uneven layout block split */
+    gap: 60px;
+    padding: 50px 0;
+    border-bottom: 1px solid #e5e7eb; /* Soft ash gray horizontal divider */
+    transition: all 0.4s ease;
+}
+
+/* ==========================================================================
+   ⏱️ LEFT COLUMN: TYPOGRAPHIC TIMESTAMP STAMPS
+   ========================================================================== */
+.matrix-time-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.stamp-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.matrix-index-num {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9ca3af; /* Light Ash Gray structural guide label */
+    letter-spacing: 1px;
+}
+
+.matrix-huge-year {
+    font-family: 'Cinzel', serif; /* Elegant, premium historical numbers */
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 900;
+    color: #09090b;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -1px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modern clean accent block replacing lines or cards */
+.matrix-ash-divider {
+    width: 40px;
+    height: 4px;
+    background-color: #e5e7eb; /* Deep structural Ash block indicator */
+    margin-top: 20px;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+/* ==========================================================================
+   📑 RIGHT COLUMN: LAYOUT TEXT PACKAGING
+   ========================================================================== */
+.matrix-content-block {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.matrix-content-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af; /* Crisp ash gray sub-tag */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.matrix-content-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    color: #09090b;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.matrix-content-prose {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #4b5563; /* Elegant readable body text */
+    margin: 0;
+    max-width: 580px;
+}
+
+/* ==========================================================================
+   🎮 MICRO INTERACTION STATES
+   ========================================================================== */
+.matrix-row:hover {
+    background-color: #fafafa; /* Very subtle light ash highlight canvas zone on hover */
+    padding-left: 20px; /* Micro architectural slide expansion */
+}
+
+.matrix-row:hover .matrix-huge-year {
+    color: #09090b;
+    transform: scale(1.03) translateX(4px);
+}
+
+.matrix-row:hover .matrix-ash-divider {
+    width: 80px; /* The bar stretches out gracefully as feedback */
+    background-color: #09090b; /* Flipped from ash to stark solid black */
+}
+
+/* ==========================================================================
+   📱 ADAPTIVE MEDIA VIEWPORTS
+   ========================================================================== */
+@media screen and (max-width: 868px) {
+    .matrix-editorial-header {
+        grid-template-columns: 1fr; /* Header snaps to vertical display flow layout */
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .matrix-subtitle {
+        max-width: 100%;
+    }
+
+    .matrix-row {
+        grid-template-columns: 1fr; /* Row collapses into beautiful stacked sections */
+        gap: 20px;
+        padding: 40px 0;
+    }
+    
+    .matrix-row:hover {
+        padding-left: 0; /* Disables side shifting on tiny glass screen surfaces */
+        background-color: transparent;
+    }
+
+    .matrix-ash-divider {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   MASTER BANNER CONTAINMENT
+   ========================================================================== */
+.sjgh-footer-banner {
+    width: 100%;
+    background-color: #060e1f; /* Locks down layout context seamlessly to your site dark theme */
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-asymmetric-canvas {
+    width: 100%;
+    min-height: 340px; /* Slimmed and compact visual balance matching your reference */
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Gives content pipeline the dominant layout track width */
+    position: relative;
+}
+
+/* ==========================================================================
+    LEFT PANEL LAYOUT & NAVIGATION SPINE
+   ========================================================================== */
+.banner-left-panel {
+    background-color: #d7d9e4; /* The clinical teal base color from your screenshot reference */
+    padding: 60px 60px 60px 40px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    z-index: 5;
+}
+
+/* Micro Functional Spine replacing the raw social sidebar */
+.utility-action-spine {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-right: 1px solid rgba(6, 14, 31, 0.15);
+    padding-right: 30px;
+}
+
+.spine-utility-link {
+    width: 44px;
+    height: 44px;
+    background-color: #060e1f; /* Contrast color block */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(6, 14, 31, 0.1);
+}
+
+.utility-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.spine-utility-link:hover {
+    transform: scale(1.08) translateX(-2px);
+    background-color: #ffffff;
+    color: #060e1f;
+}
+
+/* Left Typography Flow */
+.banner-brand-content {
+    text-align: left;
+}
+
+.banner-badge-group {
+    margin-bottom: 16px;
+}
+
+.banner-badge-tag {
+    background-color: #060e1f;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-display-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(26px, 2.5vw, 36px);
+    font-weight: 800;
+    color: #060e1f; /* High-contrast crisp tone over teal block background */
+    line-height: 1.2;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.5px;
+}
+
+.banner-highlight {
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Minimalist Editorial Breadcrumb Line */
+.banner-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    color: rgba(6, 14, 31, 0.6);
+    font-weight: 500;
+}
+
+.crumb-separator {
+    color: rgba(6, 14, 31, 0.3);
+}
+
+.crumb.active {
+    color: #060e1f;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   📐 RIGHT PANEL LAYOUT & ASYMMETRIC WAVE MASK
+   ========================================================================== */
+.banner-right-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Recreates the elegant fluid separation mask from your reference image */
+.asymmetric-fluid-curve {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
+    width: 120px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Flips the curve dynamically to lock onto the teal panel */
+.curve-svg {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1); 
+}
+
+.curve-svg path {
+    fill:#d7d9e4; /* Dynamically matches the left wing content block fill color */
+}
+
+/* Image Background Frame Packaging */
+.banner-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.banner-bg-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: brightness(100%) contrast(120%);
+}
+
+/* Soft twilight overlay to give architectural assets a premium healthcare tone */
+.banner-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent, rgba(6, 14, 31, 0.4));
+    z-index: 2;
+}
+
+/* ==========================================================================
+   📱 SYSTEM ADAPTIVE BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .banner-asymmetric-canvas {
+        grid-template-columns: 1fr; /* Collapses split cells into a uniform vertical block stack */
+        min-height: auto;
+    }
+
+    .banner-left-panel {
+        padding: 50px 30px;
+        gap: 30px;
+    }
+
+    .banner-right-panel {
+        height: 220px; /* Restricts fixed heights for architectural photo asset tracks on mobile views */
+    }
+
+    /* Standardizes fluid separator curves into flat horizons on tablet screens */
+    .asymmetric-fluid-curve {
+        top: -40px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 42px;
+    }
+    
+    .curve-svg {
+        transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .banner-left-panel {
+        flex-direction: column; /* Stacks the sidebar layout links cleanly above title text paths */
+        align-items: flex-start;
+        gap: 30px;
+        padding: 40px 24px;
+    }
+
+    .utility-action-spine {
+        flex-direction: row; /* Horizontal conversion rules across tiny screens */
+        border-right: none;
+        border-bottom: 1px solid rgba(6, 14, 31, 0.1);
+        padding-right: 0;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .banner-display-title {
+        font-size: 24px;
+    }
+    
+    .banner-breadcrumbs {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+}

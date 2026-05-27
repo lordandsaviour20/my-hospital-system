@@ -1,16 +1,29 @@
-   html, body {
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #ffffff;
+    /* Remove overflow rules here completely */
+}
+
+body {
     margin: 0;
     padding: 0;
     width: 100%;
     background-color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(14px, 0.9vw + 10px, 18px);    
+    font-size: clamp(14px, 0.9vw + 10px, 18px);
+    /* Remove overflow rules here completely */
 }
 
+
+/*  This handles child component bleed safely without breaking vertical viewport rules */
 .app-container {
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; 
+    position: relative;
 }
-
 /* ==========================================================================
     PURE CSS AUTO-HIDING PREMIUM SCROLLBAR
    ========================================================================== */
@@ -39,112 +52,6 @@
     background: rgba(62, 224, 209, 1) !important; /* Vibrantly lit clinical teal */
 }
 
-
-#headerId {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-/* ====================================
-   FLUID HERO SLIDESHOW MODULE (HEADER)
-   ==================================== */
-
-#header-main {
-    position: relative;
-      
-    /* Forces the header container to perfectly match the full screen height */
-    height: 100vh; 
-    height: 100svh; /* Handles responsive mobile browser toolbars natively */
-      
-    /*  FIX: Use 100% instead of 100vw so it respects the scrollbar bounds */
-    width: 100%;
-    margin: 0;
-    padding: 0;
-      
-    /* Prevents child elements from bleeding out or causing layout scrollbars */
-    overflow: hidden; 
-      
-    /* Flex grid coordinates center your text and logo graphics seamlessly */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-.headerImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  /*Forces image canvas to scale exactly to the viewport's body width */
-  width: 100%;
-  height: 100%;
-  
-  /* Aligns and scales without compressing, stretching, or breaking aspect ratios */
-  object-fit: cover; 
-  object-position: center; 
-  
-  opacity: 0;
-  z-index: 1;
-  transition: opacity 1.5s ease-in-out; 
-}
-
-.headerImage.active {
-    opacity: 1;
-}
-
-.SJGHLogo {
-    position: absolute;
-    z-index: 2;
-    top: 6%;
-    right: 3%;
-    width: clamp(65px, 7.5vw, 125px); 
-    padding: 0;
-}
-
-.EOSL {
-    position: absolute;
-    z-index: 3;
-    top: 6%;
-    left: 3%;
-    width: clamp(48px, 5.5vw, 85px); 
-    padding: 0;
-}
-
-#headerId h1 {
-    position: absolute;
-    z-index: 2; 
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'PT Sans', sans-serif;
-    width: 85%; 
-    text-align: center;
-    color: hsl(0, 0%, 100%); 
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75); 
-    font-size: clamp(15px, 3vw + 8px, 68px); 
-    margin: 0;
-}
-#header-main::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      to bottom,
-      rgba(15, 23, 42, 0.4) 0%,
-      rgba(15, 23, 42, 0.1) 50%,
-      rgba(15, 23, 42, 0.5) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
 /* =======================================
    INTERACTIVE GLASSMORPHIC NAVIGATION BAR
    ======================================= */
@@ -164,7 +71,7 @@
     border-radius: clamp(12px, 1.5vw, 30px); /* Smoothly scales corners up/down with viewport sizes */
     
     /* ALWAYS VISIBLE STATE: Clean, elongated semi-transparent frosted backdrop */
-    background: rgba(14, 25, 53, 0.35); 
+    background: rgba(8, 14, 30, 0.7); 
     backdrop-filter: blur(10px) saturate(130%);
     -webkit-backdrop-filter: blur(10px) saturate(130%);
     
@@ -180,11 +87,11 @@
 
 /*  INTERACTION STATE: Deepens into a richer, slightly darker frosted glass container */
 .navbar:hover {
-    background: rgba(8, 14, 30, 0.7); 
+    background: rgba(8, 14, 30, 0.795); 
     backdrop-filter: blur(16px) saturate(150%);
     -webkit-backdrop-filter: blur(16px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.178);
 }
 
 .navbar ul {
@@ -227,7 +134,7 @@
     text-shadow: none;
 }
 
-/* ✨ Accent underscore trace animation */
+/*  Accent underscore trace animation */
 .navbar a::after,
 .navbar ul li.has-dropdown .dropdown-trigger::after {
     content: '';
@@ -293,6 +200,7 @@
 .navbar ul li.has-dropdown:hover .dropdown-submenu {
     display: block;
 }
+
 
 /* ==================================================
    UNIVERSAL CONTAINERS & REGISTRATION WORKFLOW FORMS

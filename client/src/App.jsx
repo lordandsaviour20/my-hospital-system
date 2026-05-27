@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import Bookingmain from './pages/Bookings/DoctorChannelling/BookingMain';
 import Home from './pages/Home Page/HomeMain';
-import About from './pages/About';
+import AboutMain from './pages/About Page/AboutMain';
 import ContactUs from './pages/ContactUs';
 import Services from './pages/Services';
 
@@ -73,7 +73,7 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutMain />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/services" element={<Services />} />
 

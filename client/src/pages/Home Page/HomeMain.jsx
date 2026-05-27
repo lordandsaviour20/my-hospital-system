@@ -1,4 +1,5 @@
 import React from "react";
+import HeaderHome from './HeaderHome';
 import ServiceGrid from './Section1';
 //import SjghNetwork from './Section8';
 
@@ -14,6 +15,7 @@ import SjghNetwork from './Section8';
 function Home(){
     return(
         <>
+        <HeaderHome/>
         <ServiceGrid />
         <Section3 />
         <ConvenienceServices/>
