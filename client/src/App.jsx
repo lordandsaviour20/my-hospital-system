@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import Bookingmain from './pages/Bookings/DoctorChannelling/BookingMain';
 import Home from './pages/Home Page/HomeMain';
 import AboutMain from './pages/About Page/AboutMain';
-import ContactUs from './pages/ContactUs';
-import Services from './pages/Services';
+import ContactUs from './pages/ContactUs/ContactUs';
+import Services from './pages/Services/Services';
 
 // Subpages of Booking
 import MedicalCheckup from './pages/Bookings/MedicalCheckups/MedicalCheckup';

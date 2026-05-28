@@ -7,6 +7,9 @@ import Footer from './Footer'
 import index from './index.css'
 import Home from './pages/Home Page/Home.css'
 import About from './pages/About Page/About.css'
+import ContactUs from './pages/ContactUs/ContactUs.css'
+import Services from './pages/Services/Services.css'
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

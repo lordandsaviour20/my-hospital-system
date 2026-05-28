@@ -209,7 +209,7 @@ body {
     width: clamp(290px, 88vw, 620px);
     min-height: 350px;
     height: auto;
-    margin: clamp(25px, 4.5vw, 65px) auto; 
+    margin: clamp(85px, 8.5vw, 165px) auto; 
     background-color: hsl(223, 58%, 13%);
     padding: clamp(16px, 3.8vw, 42px); 
     box-shadow: 0 5px 18px rgba(0,0,0,0.12); 
@@ -539,6 +539,7 @@ body {
    .schedule-table-container {
     /* Allows the table box to grow and shrink proportionally */
     flex: 1 1 550px; 
+    margin-top: 11%;
     max-width: 750px;
     width: 100%;
     box-sizing: border-box;
@@ -613,7 +614,7 @@ body {
     height: auto;
     
     /* Removed the disruptive hard margins that caused edge clipping */
-    margin: 0 !important; 
+    margin-top: 20%; 
     
     background-color: hsl(223, 58%, 13%);
     padding: clamp(20px, 3.5vw, 40px); 
@@ -642,32 +643,6 @@ body {
       max-width: 100%;          /* Allows cards to fill width safely */
       width: 100%;
   }
-
-
-  .navbar {
-    position: relative; /* Disconnects overlay layout on tiny phone screens to prevent cluttering headings */
-    background: rgba(14, 25, 53, 0.85); /* Deepens backdrop opacity context slightly on mobile panels */
-}
-
-.navbar ul {
-    flex-direction: column; 
-    align-items: center;
-    gap: 12px;
-}
-
-.navbar li {
-    width: 100%;
-    text-align: center;
-}
-
-.navbar ul li.has-dropdown .dropdown-submenu {
-    position: static; 
-    transform: none;
-    width: 100%;
-    box-shadow: none;
-    background: rgba(255, 255, 255, 0.85); 
-    margin-top: 6px !important;
-}
 }
 
 
@@ -676,7 +651,7 @@ body {
 
 
 /* ==========================================================================
-   🧱 FOOTER WRAPPER SETUP
+    FOOTER WRAPPER SETUP
    ========================================================================== */
    .med-master-footer {
     background-color: #051129; /* Ultra-deep premium health navy */
@@ -880,7 +855,7 @@ body {
 }
 
 /* ==========================================================================
-   🖼️ MIDDLE ROW NAV LINKS GRIDS
+   MIDDLE ROW NAV LINKS GRIDS
    ========================================================================== */
 .footer-divider-line {
     border: 0;

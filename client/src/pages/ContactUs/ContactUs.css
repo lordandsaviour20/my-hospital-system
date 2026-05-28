@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+    MASTER SITE CANVAS (Midnight Navy, Teal, & White Corporate Setup)
+   ========================================================================== */
+.sjgh-contact-page {
+    background-color: #ffffff; 
+    padding: clamp(80px, 10vw, 120px) 24px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-master-container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+    SECTION 1: ASYMMETRIC EDITORIAL HEADER
+   ========================================================================== */
+.contact-editorial-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-bottom: 2px solid #060e1f; /* Updated to Signature Midnight Navy */
+    padding-bottom: 40px;
+    margin-bottom: 60px;
+    align-items: flex-end;
+}
+
+.contact-mini-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #2ec4b6; /* Clinical Teal Accent Tag */
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.contact-main-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 800;
+    color: #060e1f; /* Midnight Navy Core */
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.contact-subtitle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #4b5563; /* Slate Gray */
+    margin: 0;
+    max-width: 480px;
+}
+
+/* ==========================================================================
+    SECTION 2: ASYMMETRIC DASHBOARD MATRIX GRID
+   ========================================================================== */
+.contact-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.matrix-block {
+    background: #ffffff;
+    border: 1px solid #e5e7eb; 
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Row Extension Feature: Making the master numbers pop out elegantly */
+.block-headline {
+    grid-column: span 2;
+    background: rgba(14, 25, 53, 0.02); /* Exceedingly light premium navy wash */
+    border-color: rgba(6, 14, 31, 0.1);
+}
+
+.block-accent {
+    border-left: 4px solid #2ec4b6; /* Teal flash accent bar */
+}
+
+.block-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #2ec4b6; /* Clinical Teal */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.block-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #060e1f; /* Midnight Navy text headings */
+    margin: 0 0 16px 0;
+}
+
+.phone-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+/* Numbers utilizing Cinzel Serif for crisp, editorial representation */
+.matrix-phone-link {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 900;
+    color: #060e1f; /* Shifted link paths to midnight navy */
+    text-decoration: none;
+    line-height: 1.1;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.emergency-text {
+    color: #b91c1c; /* Kept acute response crimson strictly for safety */
+}
+
+.matrix-email-link {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #060e1f;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-bottom: 16px;
+}
+
+.matrix-detail-label {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #2ec4b6;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.block-prose {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin: auto 0 0 0; 
+}
+
+/* Micro-Interactions */
+.matrix-block:hover {
+    border-color: #2ec4b6; /* Hovers snap feedback to your teal element */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(6, 14, 31, 0.04); 
+}
+
+.matrix-phone-link:hover {
+    transform: translateX(4px);
+    color: #2ec4b6;
+}
+
+/* ==========================================================================
+    SECTION 3: GEOGRAPHIC LOCATOR STRIP
+   ========================================================================== */
+.contact-locator-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background-color: #fafafa; /* Minimal clean soft ash canvas foundation row */
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 48px;
+    align-items: center;
+}
+
+.locator-column {
+    text-align: left;
+}
+
+.locator-tag {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #2ec4b6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.locator-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #060e1f;
+    margin: 0 0 16px 0;
+}
+
+.locator-address {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* Blueprint Map Presentation Graphic */
+.blueprint-map-card {
+    background-color: #060e1f; /* Matches dark header and about project cards precisely */
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+}
+
+.blueprint-lat-long {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8a99ad;
+    position: relative;
+    z-index: 2;
+}
+
+/* Abstract visual lines mimicking engineering coordinate graphs */
+.blueprint-grid-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+.blueprint-nav-btn {
+    background-color: #2ec4b6; /* Sits sharply out as an actionable teal button block */
+    color: #060e1f;
+    text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 6px;
+    display: inline-block;
+    align-self: flex-start;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.blueprint-nav-btn:hover {
+    background-color: #ffffff;
+    color: #060e1f;
+}
+
+/* ==========================================================================
+    SYSTEM ADAPTIVE VIEWPORTS
+   ========================================================================== */
+@media screen and (max-width: 968px) {
+    .contact-matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .block-headline {
+        grid-column: span 2;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-editorial-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .contact-matrix-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .block-headline {
+        grid-column: span 1;
+    }
+    
+    .contact-locator-strip {
+        grid-template-columns: 1fr;
+        padding: 32px;
+        gap: 30px;
+    }
+}
