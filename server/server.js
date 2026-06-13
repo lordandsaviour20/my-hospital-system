@@ -15,9 +15,9 @@ const VisitingPass = require('./models/VisitingPass');
 
 mongoose.connect('mongodb://127.0.0.1:27017/hospital_db')
     .then(() => {
-        console.log("✅ The brain is connected to the database!");
+        console.log("The brain is connected to the database!");
     })
-    .catch((err) => console.log("❌ Connection error:", err));
+    .catch((err) => console.log(" Connection error:", err));
 
 // A test route to see if it works
 app.get('/', (req, res) => {
@@ -57,7 +57,6 @@ app.post('/api/book', async (req, res) => {
             tokenNumber: calculatedToken // Saves the real token directly to MongoDB
         });
 
-        // Save it to MongoDB
         await newDChannel.save();
 
         //Generate the QR code containing the generated token data
@@ -95,7 +94,7 @@ app.post('/api/checkup', async (req, res) => {
       }
   
       // Count existing checkup appointments for this specific package, date, and slot
-      // FIX 2: Map the schema key 'package' to our safe local variable 'medicalPackage'
+      //  Map the schema key 'package' to our safe local variable 'medicalPackage'
       const existingMedicalCheckupCount = await MedicalCheckup.countDocuments({
         package: medicalPackage,
         appointmentDate,

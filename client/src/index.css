@@ -155,7 +155,7 @@ body {
 }
 
 /* ==========================================================================
-   🕶️ FROSTED GLASS DROPDOWN SUBMENU PANELS
+   FROSTED GLASS DROPDOWN SUBMENU PANELS
    ========================================================================== */
 .navbar ul li.has-dropdown .dropdown-submenu {
     display: none;             
@@ -918,7 +918,7 @@ body {
 }
 
 /* ==========================================================================
-   ⚖️ BOTTOM COMPLIANCE ROW
+   BOTTOM COMPLIANCE ROW
    ========================================================================== */
 .footer-bottom-bar {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -966,7 +966,7 @@ body {
 }
 
 /* ==========================================================================
-   ⚡ KEYFRAMES & RESPONSIVE BREAKPOINTS
+    KEYFRAMES & RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @keyframes pulseGlow {
     0% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.5); }

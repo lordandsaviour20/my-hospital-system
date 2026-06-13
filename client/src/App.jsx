@@ -35,7 +35,7 @@ function ScrollToContent() {
   return null; 
 }
 
-// 🛡️ DECISIVE TRACKING FIX: Captures state instantly without passive thread blocks
+// Captures state instantly without passive thread blocks
 function ScrollBarSetting() {
   useEffect(() => {
     let scrollTimeout;
@@ -52,7 +52,7 @@ function ScrollBarSetting() {
       }, 1000);
     };
 
-    // FIXED: Dropped { passive: true } so engine prioritizes class injection immediately
+    // Dropped { passive: true } so engine prioritizes class injection immediately
     window.addEventListener('scroll', handleScroll, { capture: true });
     
     return () => {
