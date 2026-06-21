@@ -16,7 +16,7 @@ function Footer() {
       <div className="footer-bounded-container">
         
         {/* ==========================================
-           1️⃣ TOP ROW: BRAND, EMERGENCY HOTLINE & CONTACT INFO
+           BRAND, EMERGENCY HOTLINE & CONTACT INFO
            ========================================== */}
         <div className="footer-top-grid">
           {/* Brand Identity Column */}
@@ -70,7 +70,7 @@ function Footer() {
         <hr className="footer-divider-line" />
 
         {/* ==========================================
-           2️⃣ MIDDLE ROW: INTERACTIVE MEDICAL NETWORK & EXCELLENCE GRIDS
+           MIDDLE ROW: INTERACTIVE MEDICAL NETWORK & EXCELLENCE GRIDS
            ========================================== */}
         <div className="footer-middle-grid">
           {/* Hospital Hospital Services Column */}
@@ -111,7 +111,7 @@ function Footer() {
         </div>
 
         {/* ==========================================
-           3️⃣ BOTTOM ROW: LEGAL CREDITS & COMPLIANCE
+            BOTTOM ROW: LEGAL CREDITS & COMPLIANCE
            ========================================== */}
         <div className="footer-bottom-bar">
           <p className="copyright-notice">

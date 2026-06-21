@@ -160,10 +160,10 @@ body {
 .navbar ul li.has-dropdown .dropdown-submenu {
     display: none;             
     position: absolute;
-    top: 135%; /* Pops upward cleanly over the slideshow viewport space */
+    top: 130%; /* Pops upward cleanly over the slideshow viewport space */
     left: 50%;
     transform: translateX(-50%); 
-    min-width: clamp(200px, 16vw, 200px); 
+    min-width: clamp(150px, 12vw, 200px); 
     
     /* Deep slate frosted backdrop variant */
     background: rgba(10, 17, 34, 0.88); 
@@ -188,13 +188,13 @@ body {
     -webkit-text-fill-color: initial !important;
     text-shadow: none !important;
     display: block;
-    width: 100%;
-    text-align: left;
+    width: auto;
+    text-align: center;
 }
 
 .navbar ul li.has-dropdown .dropdown-submenu li a:hover {
     background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), rgba(6, 182, 212, 0.15)) !important; 
-    color: #38bdf8 !important;            
+    color: #38bdf8 !important;   
 }
 
 .navbar ul li.has-dropdown:hover .dropdown-submenu {
