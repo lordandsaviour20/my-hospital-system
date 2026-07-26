@@ -75,7 +75,7 @@
 #headerId h1 {
     position: absolute;
     z-index: 2; 
-    top: 20%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'PT Sans', sans-serif;
@@ -396,7 +396,7 @@
         text-align: center;     /* Centers all aligned text contexts perfectly on touch viewports */
     }
     
-    .text-block h2 {
+    .textBlock h2 {
         text-align: center;     /* Centers heading when layout collapses */
     }
     
@@ -494,7 +494,22 @@
 /* ==========================================================================
     MOBILE RESPONSIVE ADAPTATION (Screens <= 768px Devices)
    ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .stats-ribbon-container {
+        /* The 60% width + 20% left margin were tuned for wide desktop screens only;
+           relax both so the ribbon isn't squeezed into a narrow off-center column
+           on iPad and other tablet/laptop-adjacent widths */
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
 @media screen and (max-width: 768px) {
+    .stats-ribbon-container {
+        width: 100%;
+        margin-left: 0;
+    }
+
     .stats-ribbon-content {
         flex-direction: column; /* Collapses ribbon horizontally to vertical cards layout on mobile */
         gap: 30px;
@@ -528,7 +543,7 @@
     justify-content: center;
 
     /*  THE PARALLAX SECRET MIX: */
-    background-image: url('C:\Users\user\Documents\Hospital-System\client\src\pages\Home Page\HeaderImages\IMG1.png'); /* Swap with your desired background image path */
+    background-image: url('C:\Users\User\Documents\Personal Projects\Hospital-System\client\src\pages\Home Page\HeaderImages\IMG1.png'); /* Swap with your desired background image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -992,7 +1007,7 @@
     overflow: hidden;
 
 
-    background-image: url('C:\Users\user\Documents\Hospital-System\client\src\pages\Home Page\DocImage.png'); /* Swap with your desired background image path */
+    background-image: url('C:C:\Users\User\Documents\Personal Projects\Hospital-System\client\src\pages\Home Page\DocImage.png'); /* Swap with your desired background image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1324,6 +1339,14 @@
     
     .metric-two {
         right: 5%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .medical-hero-wrapper {
+        /* Matches the Section 4 parallax fallback: fixed-attachment backgrounds are
+           unreliable/heavy on mobile Safari and Chrome, so fall back to scroll */
+        background-attachment: scroll;
     }
 }
 
@@ -1944,9 +1967,11 @@
     ADAPTIVE MEDIA VIEWPORT RESPONSIVE SYSTEM CONVERSIONS
    ========================================================================== */
 @media screen and (max-width: 992px) {
-    .sjgh-logos-grid {
+
+.sjgh-logos-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        margin-top: 15%;
     }
 
     .sjgh-accreditations-row {
@@ -1962,11 +1987,18 @@
     }
 
     .sjgh-matrix-overlay {
-        display: none; /* Turns off matrix layers cleanly on narrow tablet screens */
+        display: none; 
     }
 }
 
 @media screen and (max-width: 600px) {
+    .SJGHLogo {
+        margin-top: -2%;
+    }
+    .EOSL {
+        margin-top: -2%;
+    }
+
     .sjgh-network-section {
         padding: 50px 0;
     }

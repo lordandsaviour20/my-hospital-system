@@ -63,7 +63,7 @@ body {
     transform: translateX(-50%); /* Centers the floating rounded navbar perfectly */
     
     /* Dynamically handles width so it behaves like an elegant elongated pill container */
-    width: calc(auto - clamp(20px, 5vw, 60px)); 
+    width: calc(50% - clamp(10px, 2.5vw, 30px) * 2); 
     max-width: 1360px;
     z-index: 10;
     
@@ -626,10 +626,10 @@ body {
 }
 
 /* ====================================================
-    MOBILE VIEWPORTS MEDIA COLLAPSE CONTROLS (<= 800px)
+    TABLET/MOBILE VIEWPORTS MEDIA COLLAPSE CONTROLS
    ==================================================== */
-  
-   @media screen and (max-width: 1024px) {    #header-main {
+
+   @media screen and (max-width: 900px) {    #header-main {
         height: 38vh; 
     }
 
@@ -642,6 +642,27 @@ body {
   .bookingBox {
       max-width: 100%;          /* Allows cards to fill width safely */
       width: 100%;
+  }
+
+  .schedule-table-container {
+      margin-top: 30px;         /* Prevents the 11% width-based margin from ballooning once stacked */
+  }
+
+  .bookingBoxC {
+      margin-top: 30px;         /* Prevents the 20% width-based margin from ballooning once stacked */
+  }
+}
+
+/* ====================================================
+    IPAD LANDSCAPE / SMALL LAPTOP TUNING (1024px)
+   ==================================================== */
+@media screen and (min-width: 901px) and (max-width: 1180px) {
+  .schedule-table-container {
+      margin-top: 6%;           /* Softer than the 11% desktop default, keeps both cards visually aligned side-by-side */
+  }
+
+  .bookingBoxC {
+      margin-top: 8%;           /* Softer than the 20% desktop default */
   }
 }
 
